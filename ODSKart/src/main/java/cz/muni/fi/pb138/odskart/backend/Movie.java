@@ -1,19 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package cz.muni.fi.pb138.odskart.backend;
 
-/**
- *
- * @author Jiří
- */
 public class Movie {
+
     private String name;
 
     public Movie(String name) {
+        if (name == null || name.equals("")) {
+            throw new IllegalArgumentException("name is null or empty string");
+        }
         this.name = name;
     }
 
@@ -22,7 +16,10 @@ public class Movie {
     }
 
     public void setName(String name) {
+        if (name == null || name.equals("")) {
+            throw new IllegalArgumentException("name is null or empty string");
+        }
         this.name = name;
     }
-    
+
 }
