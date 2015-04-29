@@ -1,25 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package cz.muni.fi.pb138.odskart.backend;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
-/**
- *
- * @author Jiří
- */
-public class Medium {
-   
-   private Integer id;
-   private List<Movie> movies;
 
-    public Medium(Integer id, List<Movie> movies) {
-        this.id = id;
-        this.movies = movies;
+public class Medium {
+
+    private Integer id;
+    private final List<Movie> movies;
+
+    public Medium() {
+        this.id = null; // ID is not always known at point of creating instance
+        this.movies = new ArrayList<>();
     }
 
     public Integer getId() {
@@ -45,20 +37,19 @@ public class Medium {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Medium other = (Medium) obj;
-        if (!Objects.equals(this.movies, other.movies)) {
-            return false;
-        }
+        // TODO
+        
         return true;
     }
 
     @Override
     public String toString() {
-        
+
         StringBuilder listString = new StringBuilder();
-       for ( Movie s : movies)
-           listString.append(s.getName() + " ");
-       
+        for (Movie s : movies) {
+            listString.append(s.getName()).append(" ");
+        }
+
         return "Medium{" + "movies=" + listString + '}';
     }
 
@@ -66,19 +57,19 @@ public class Medium {
         return movies;
     }
 
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
+    public void addMovie(Movie movie) {
+        this.movies.add(movie);
     }
+
     // find movie 
-    public Integer findMovie(String name){
-        if (name == null) throw new IllegalArgumentException("Movie name is null");
-        
+
+    public Integer findMovie(String name) {
+        if (name == null || name.equals("")) {
+            throw new IllegalArgumentException("Movie name is null or empty string");
+        }
+
         // if found return index otherwise -1
         return movies.indexOf(new Movie(name));
     }
-    
-    
-    
-   
-    
+
 }
