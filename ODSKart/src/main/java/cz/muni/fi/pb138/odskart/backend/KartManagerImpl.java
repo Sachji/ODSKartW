@@ -40,9 +40,15 @@ public class KartManagerImpl implements KartManager {
 
     @Override
     public void removeCategory(int id) throws KartException, IOException {
+      
         if (id >= spreadSheet.getSheetCount()) {
             throw new KartException("Category doesn't exist!");
         }
+        // every spreedsheet need to have at least one sheet(= category) 
+        if (spreadSheet.getSheetCount() == 1){
+            throw new KartException("Removing last category");
+        }
+        System.out.println(spreadSheet.getSheetCount()+ "pica" + id);
         Sheet toRemove = spreadSheet.getSheet(id);
         toRemove.detach();
         spreadSheet.saveAs(file);
