@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-public interface SpreadSheetManager {
+public interface KartManager {
     
     List<Category> getCategoryList();
     void addCategory(String name, int maxMediumMovies) throws KartException, IOException;

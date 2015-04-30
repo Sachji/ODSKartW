@@ -7,12 +7,12 @@ import java.util.List;
 import org.jopendocument.dom.spreadsheet.Sheet;
 import org.jopendocument.dom.spreadsheet.SpreadSheet;
 
-public class SpreadSheetManagerImpl implements SpreadSheetManager {
+public class KartManagerImpl implements KartManager {
 
     private final File file;
     private final SpreadSheet spreadSheet;
 
-    public SpreadSheetManagerImpl(File file) throws IOException {
+    public KartManagerImpl(File file) throws IOException {
         this.file = file;
         spreadSheet = SpreadSheet.createFromFile(file);
     }
