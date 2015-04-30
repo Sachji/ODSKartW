@@ -28,29 +28,56 @@ public class KartManagerImpl implements KartManager {
     }
 
     @Override
-    public void addCategory(String name, int maxMediumMovies) throws KartException, IOException {
+    public void addCategory(String name, int maxMediumMovies) throws KartException {
         if (spreadSheet.getSheet(name, false) != null) {
             throw new KartException("Category with this name already exists!");
         }
 
         Sheet newSheet = spreadSheet.addSheet(name);
         newSheet.setColumnCount(maxMediumMovies);
-        spreadSheet.saveAs(file);
+        try {
+            spreadSheet.saveAs(file);
+        } catch (IOException ex) {
+            throw new KartException("Unable to save file: " + ex.getMessage(), ex);
+        }
     }
 
     @Override
-    public void removeCategory(int id) throws KartException, IOException {
-      
+    public void removeCategory(int id) throws KartException {
         if (id >= spreadSheet.getSheetCount()) {
             throw new KartException("Category doesn't exist!");
         }
         // every spreedsheet need to have at least one sheet(= category) 
-        if (spreadSheet.getSheetCount() == 1){
+        if (spreadSheet.getSheetCount() == 1) {
             throw new KartException("Removing last category");
         }
         Sheet toRemove = spreadSheet.getSheet(id);
         toRemove.detach();
-        spreadSheet.saveAs(file);
+        try {
+            spreadSheet.saveAs(file);
+        } catch (IOException ex) {
+            throw new KartException("Unable to save file: " + ex.getMessage(), ex);
+        }
+    }
+
+    @Override
+    public void addMedium(Category category, Medium medium) throws KartException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void moveMedium(Category oldCat, Category newCat, Medium medium) throws KartException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void removeMedium(Category category, Medium medium) throws KartException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Medium> getCategoryMediums(Category category) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
