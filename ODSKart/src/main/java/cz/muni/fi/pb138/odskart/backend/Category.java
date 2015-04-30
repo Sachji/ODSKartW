@@ -5,20 +5,31 @@ import java.util.ArrayList;
 
 public class Category {
 
-    private Integer id;
+    private final int id;
+    private final String name;
+    private final int maxMediumMovies;
     private final List<Medium> mediums;
-
-    public Category() {
-        this.id = null;
+    
+    public Category(Integer id, int maxMediumMovies, String name) {
+        if(maxMediumMovies <= 0){
+            throw new IllegalArgumentException("maximum of medium movies must be positive non-zero number");
+        }
+        this.name = name;
+        this.id = id;
+        this.maxMediumMovies = maxMediumMovies;
         this.mediums = new ArrayList<>();
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public String getName() {
+        return name;
+    }
+    
+    public int getMaxMediumMovies() {
+        return maxMediumMovies;
     }
 
     public List<Medium> getMediums() {
