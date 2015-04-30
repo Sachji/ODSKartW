@@ -48,7 +48,6 @@ public class KartManagerImpl implements KartManager {
         if (spreadSheet.getSheetCount() == 1){
             throw new KartException("Removing last category");
         }
-        System.out.println(spreadSheet.getSheetCount()+ "pica" + id);
         Sheet toRemove = spreadSheet.getSheet(id);
         toRemove.detach();
         spreadSheet.saveAs(file);
