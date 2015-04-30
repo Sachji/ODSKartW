@@ -8,10 +8,12 @@ public class Medium {
 
     private Integer id;
     private final List<Movie> movies;
+    private Category category;
 
-    public Medium() {
+    public Medium(Category category) {
         this.id = null; // ID is not always known at point of creating instance
         this.movies = new ArrayList<>();
+        this.category = category;
     }
 
     public Integer getId() {
@@ -20,6 +22,31 @@ public class Medium {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void addMovie(Movie movie) {
+        this.movies.add(movie);
+    }
+
+    public Integer findMovie(String name) {
+        if (name == null || name.equals("")) {
+            throw new IllegalArgumentException("Movie name is null or empty string");
+        }
+
+        // if found return index otherwise -1
+        return movies.indexOf(new Movie(name));
     }
 
     @Override
@@ -34,11 +61,11 @@ public class Medium {
         if (obj == null) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        if (!(obj instanceof Medium)) {
             return false;
         }
         // TODO
-        
+
         return true;
     }
 
@@ -52,24 +79,4 @@ public class Medium {
 
         return "Medium{" + "movies=" + listString + '}';
     }
-
-    public List<Movie> getMovies() {
-        return movies;
-    }
-
-    public void addMovie(Movie movie) {
-        this.movies.add(movie);
-    }
-
-    // find movie 
-
-    public Integer findMovie(String name) {
-        if (name == null || name.equals("")) {
-            throw new IllegalArgumentException("Movie name is null or empty string");
-        }
-
-        // if found return index otherwise -1
-        return movies.indexOf(new Movie(name));
-    }
-
 }
