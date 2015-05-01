@@ -22,7 +22,8 @@ public class KartManagerImpl implements KartManager {
         List<Category> list = new ArrayList<>();
         for (int i = 0; i < spreadSheet.getSheetCount(); i++) {
             Sheet sheet = spreadSheet.getSheet(i);
-            list.add(new Category(i, sheet.getColumnCount(), sheet.getName()));
+            
+            list.add(new Category(i, sheet.getColumnCount() - 1, sheet.getName()));
         }
         return list;
     }
@@ -62,7 +63,36 @@ public class KartManagerImpl implements KartManager {
 
     @Override
     public void addMedium(Category category, Medium medium) throws KartException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        if (category == null) {
+            throw new IllegalArgumentException("Category is null");
+        }
+        if (medium == null) {
+            throw new IllegalArgumentException("Medium is null");
+        }
+        if (medium.getMovies().size() > category.getMaxMediumMovies()){
+            throw new IllegalArgumentException("Medium has more movies than category allows");
+        }
+
+        Sheet sheet = spreadSheet.getSheet(category.getId());
+        
+        // set new id
+        Integer newIndex = sheet.getRowCount();
+        sheet.setRowCount(newIndex + 1);
+        sheet.getCellAt(0, newIndex).setValue(newIndex);
+        medium.setId(newIndex);
+        // add movies
+        for (int j = 0; j < medium.getMovies().size(); j++) {
+            
+            String movieName = medium.getMovies().get(j).getName();
+            sheet.getCellAt(j + 1, newIndex).setValue(movieName);
+        }
+        try {
+            spreadSheet.saveAs(file);
+        } catch (IOException ex) {
+            throw new KartException("Unable to save file: " + ex.getMessage(), ex);
+        }
+
     }
 
     @Override
