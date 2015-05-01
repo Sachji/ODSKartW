@@ -22,7 +22,7 @@ public class KartManagerImpl implements KartManager {
         List<Category> list = new ArrayList<>();
         for (int i = 0; i < spreadSheet.getSheetCount(); i++) {
             Sheet sheet = spreadSheet.getSheet(i);
-            
+
             list.add(new Category(i, sheet.getColumnCount() - 1, sheet.getName()));
         }
         return list;
@@ -70,12 +70,12 @@ public class KartManagerImpl implements KartManager {
         if (medium == null) {
             throw new IllegalArgumentException("Medium is null");
         }
-        if (medium.getMovies().size() > category.getMaxMediumMovies()){
+        if (medium.getMovies().size() > category.getMaxMediumMovies()) {
             throw new IllegalArgumentException("Medium has more movies than category allows");
         }
 
         Sheet sheet = spreadSheet.getSheet(category.getId());
-        
+
         // set new id
         Integer newIndex = sheet.getRowCount();
         sheet.setRowCount(newIndex + 1);
@@ -83,7 +83,7 @@ public class KartManagerImpl implements KartManager {
         medium.setId(newIndex);
         // add movies
         for (int j = 0; j < medium.getMovies().size(); j++) {
-            
+
             String movieName = medium.getMovies().get(j).getName();
             sheet.getCellAt(j + 1, newIndex).setValue(movieName);
         }
@@ -108,6 +108,18 @@ public class KartManagerImpl implements KartManager {
     @Override
     public List<Medium> getCategoryMediums(Category category) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int getMediumRowIndex(Medium medium) throws KartException {
+        Sheet sheet = spreadSheet.getSheet(medium.getCategory().getId());
+        for (int i = 1; i < sheet.getRowCount(); i++) {
+            String sValue = sheet.getCellAt(0, i).getTextValue();
+            if (Integer.parseInt(sValue) == medium.getId()) {
+                return i;
+            }
+        }
+
+        throw new KartException("Medium with ID " + medium.getId() + " was not found.");
     }
 
 }
