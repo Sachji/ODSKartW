@@ -2,6 +2,7 @@ package cz.muni.fi.pb138.odskart.backend;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import org.jopendocument.dom.spreadsheet.Sheet;
@@ -62,30 +63,33 @@ public class KartManagerImpl implements KartManager {
     }
 
     @Override
-    public void addMedium(Category category, Medium medium) throws KartException {
-
-        if (category == null) {
-            throw new IllegalArgumentException("Category is null");
-        }
+    public void addMedium(Medium medium) throws KartException {
         if (medium == null) {
             throw new IllegalArgumentException("Medium is null");
         }
-        if (medium.getMovies().size() > category.getMaxMediumMovies()) {
+        if (medium.getCategory() == null) {
+            throw new IllegalArgumentException("Medium category is null");
+        }
+        if (medium.getMovies().size() > medium.getCategory().getMaxMediumMovies()) {
             throw new IllegalArgumentException("Medium has more movies than category allows");
         }
 
-        Sheet sheet = spreadSheet.getSheet(category.getId());
+        Sheet sheet = spreadSheet.getSheet(medium.getCategory().getId());
 
         // set new id
-        Integer newIndex = sheet.getRowCount();
-        sheet.setRowCount(newIndex + 1);
-        sheet.getCellAt(0, newIndex).setValue(newIndex);
-        medium.setId(newIndex);
+        Integer rowIndex = sheet.getRowCount();
+        sheet.setRowCount(rowIndex + 1);        
+        
+        BigDecimal pom =  (BigDecimal) sheet.getCellAt(0, rowIndex - 1).getValue();
+        Integer newId = pom.intValueExact() + 1;
+        
+        sheet.getCellAt(0, rowIndex).setValue(newId);
+        medium.setId(newId);
         // add movies
         for (int j = 0; j < medium.getMovies().size(); j++) {
 
             String movieName = medium.getMovies().get(j).getName();
-            sheet.getCellAt(j + 1, newIndex).setValue(movieName);
+            sheet.getCellAt(j + 1, rowIndex).setValue(movieName);
         }
         try {
             spreadSheet.saveAs(file);
@@ -101,7 +105,7 @@ public class KartManagerImpl implements KartManager {
     }
 
     @Override
-    public void removeMedium(Category category, Medium medium) throws KartException {
+    public void removeMedium(Medium medium) throws KartException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -110,7 +114,7 @@ public class KartManagerImpl implements KartManager {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public int getMediumRowIndex(Medium medium) throws KartException {
+    private int getMediumRowIndex(Medium medium) throws KartException {
         Sheet sheet = spreadSheet.getSheet(medium.getCategory().getId());
         for (int i = 1; i < sheet.getRowCount(); i++) {
             String sValue = sheet.getCellAt(0, i).getTextValue();
