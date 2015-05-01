@@ -78,11 +78,16 @@ public class KartManagerImpl implements KartManager {
 
         // set new id
         Integer rowIndex = sheet.getRowCount();
-        sheet.setRowCount(rowIndex + 1);        
-        
-        BigDecimal pom =  (BigDecimal) sheet.getCellAt(0, rowIndex - 1).getValue();
-        Integer newId = pom.intValueExact() + 1;
-        
+        sheet.setRowCount(rowIndex + 1);
+
+        Integer newId;
+
+        if (rowIndex > 1) {
+            BigDecimal pom = (BigDecimal) sheet.getCellAt(0, rowIndex - 1).getValue();
+            newId = pom.intValueExact() + 1;
+        } else {
+            newId = 1;
+        }
         sheet.getCellAt(0, rowIndex).setValue(newId);
         medium.setId(newId);
         // add movies
@@ -100,13 +105,24 @@ public class KartManagerImpl implements KartManager {
     }
 
     @Override
-    public void moveMedium(Category oldCat, Category newCat, Medium medium) throws KartException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void moveMedium(Category newCat, Medium medium) throws KartException {
+        removeMedium(medium);
+        medium.setCategory(newCat);
+        addMedium(medium);
     }
 
     @Override
     public void removeMedium(Medium medium) throws KartException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        Sheet sheet = spreadSheet.getSheet(medium.getCategory().getId());
+        sheet.removeRow(getMediumRowIndex(medium));
+
+        try {
+            spreadSheet.saveAs(file);
+        } catch (IOException ex) {
+            throw new KartException("Unable to save file: " + ex.getMessage(), ex);
+        }
+
     }
 
     @Override
