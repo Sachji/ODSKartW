@@ -83,7 +83,7 @@ public class KartManagerImpl implements KartManager {
         Integer newId;
 
         if (rowIndex > 1) {
-            BigDecimal pom = (BigDecimal) sheet.getCellAt(0, rowIndex - 1).getValue();
+            BigDecimal pom = (BigDecimal) sheet.getImmutableCellAt(0, rowIndex - 1).getValue();
             newId = pom.intValueExact() + 1;
         } else {
             newId = 1;
@@ -127,13 +127,34 @@ public class KartManagerImpl implements KartManager {
 
     @Override
     public List<Medium> getCategoryMediums(Category category) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        Sheet sheet = spreadSheet.getSheet(category.getId());
+        List<Medium> mediumList = new ArrayList<>();
+
+        for (int i = 1; i < sheet.getRowCount(); i++) {
+
+            Medium m = new Medium(category);
+            BigDecimal pom = (BigDecimal) sheet.getImmutableCellAt(0, i).getValue();
+            m.setId(pom.intValueExact());
+
+            for (int j = 0; j < category.getMaxMediumMovies(); j++) {
+
+                String movieName = sheet.getImmutableCellAt(j + 1, i).getTextValue();
+                if (!movieName.equals("")) {
+                    m.addMovie(new Movie(movieName));
+                }
+
+            }
+            mediumList.add(m);
+
+        }
+        return mediumList;
     }
 
     private int getMediumRowIndex(Medium medium) throws KartException {
         Sheet sheet = spreadSheet.getSheet(medium.getCategory().getId());
         for (int i = 1; i < sheet.getRowCount(); i++) {
-            String sValue = sheet.getCellAt(0, i).getTextValue();
+            String sValue = sheet.getImmutableCellAt(0, i).getTextValue();
             if (Integer.parseInt(sValue) == medium.getId()) {
                 return i;
             }
