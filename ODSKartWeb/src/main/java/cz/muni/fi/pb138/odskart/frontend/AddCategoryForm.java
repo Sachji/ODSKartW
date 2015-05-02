@@ -7,19 +7,17 @@ public class AddCategoryForm {
 
     private String name;
     private String maxMediumMovies;
-    
+
     public static AddCategoryForm extractFromRequest(HttpServletRequest request) {
         AddCategoryForm form = new AddCategoryForm();
         form.setName(request.getParameter("category_name"));
         form.setMaxMediumMovies(request.getParameter("maxMovies"));
-        System.out.println("Name: " + request.getParameter("category_name"));
-        System.out.println("Max: " + request.getParameter("maxMovies"));
         return form;
     }
 
     public Category validateAndGet(StringBuilder error) {
         try {
-            if(getMaxMediumMovies().trim().equals("")){
+            if (getMaxMediumMovies().trim().equals("")) {
                 throw new IllegalArgumentException("Max medium movies not set.");
             }
             int max = Integer.parseInt(getMaxMediumMovies());
