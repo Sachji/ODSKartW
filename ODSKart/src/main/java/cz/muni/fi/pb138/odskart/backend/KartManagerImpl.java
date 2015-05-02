@@ -30,13 +30,17 @@ public class KartManagerImpl implements KartManager {
     }
 
     @Override
-    public void addCategory(String name, int maxMediumMovies) throws KartException {
-        if (spreadSheet.getSheet(name, false) != null) {
+    public void addCategory(Category category) throws KartException {
+        if (spreadSheet.getSheet(category.getName(), false) != null) {
             throw new KartException("Category with this name already exists!");
         }
 
-        Sheet newSheet = spreadSheet.addSheet(name);
-        newSheet.setColumnCount(maxMediumMovies);
+        Sheet newSheet = spreadSheet.addSheet(category.getName());
+        newSheet.setColumnCount(category.getMaxMediumMovies() + 1);
+        newSheet.getCellAt(0, 0).setValue("ID");
+        for(int i = 0; i < category.getMaxMediumMovies(); i++) {
+            newSheet.getCellAt(i + 1, 0).setValue("Movie #" + Integer.toString(i + 1));
+        }
         try {
             spreadSheet.saveAs(file);
         } catch (IOException ex) {

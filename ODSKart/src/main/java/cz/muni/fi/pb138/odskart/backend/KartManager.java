@@ -7,7 +7,7 @@ public interface KartManager {
     List<Category> getCategoryList();
     List<Medium> getCategoryMediums(Category category);
     List<Medium> findMovie(String movieName);
-    void addCategory(String name, int maxMediumMovies) throws KartException;
+    void addCategory(Category category) throws KartException;
     void removeCategory(int id) throws KartException;
     void addMedium(Medium medium) throws KartException;
     void moveMedium(Category newCat, Medium medium)  throws KartException;
