@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+  <definition name="odskart.index" template="/layouts/default.jsp">
+    <put-attribute name="css" value="/tiles/css.jsp" />
+    <put-attribute name="title" value="ODSKartW Main page" />
+    <put-attribute name="body" value="/tiles/index.jsp" />
+    <put-attribute name="breadcrumb" value="" />
+  </definition>
+  <definition name="odskart.categories" template="/layouts/default.jsp">
+    <put-attribute name="css" value="/tiles/css.jsp" />
+    <put-attribute name="title" value="Categories" />
+    <put-attribute name="body" value="/tiles/categories.jsp" />
+    <put-attribute name="breadcrumb" value="/tiles/b_categ.jsp" />
+  </definition>
+  <definition name="odskart.addCategory" template="/layouts/default.jsp">
+    <put-attribute name="css" value="/tiles/css.jsp" />
+    <put-attribute name="title" value="Add category" />
+    <put-attribute name="body" value="/tiles/addCategory.jsp" />
+    <put-attribute name="breadcrumb" value="/tiles/b_categ_add.jsp" />
+  </definition>
+</tiles-definitions>
