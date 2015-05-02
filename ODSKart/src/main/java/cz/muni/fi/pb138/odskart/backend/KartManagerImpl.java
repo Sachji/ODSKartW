@@ -151,6 +151,24 @@ public class KartManagerImpl implements KartManager {
         return mediumList;
     }
 
+    @Override
+    public List<Medium> findMovie(String movieName) {
+
+        List<Category> categories = getCategoryList();
+        List<Medium> movMediums = new ArrayList<>();
+
+        for (Category cat : categories) {
+            List<Medium> catMediums = getCategoryMediums(cat);
+
+            for (Medium med : catMediums) {
+                if (med.getMovie(movieName) != -1) {
+                    movMediums.add(med);
+                }
+            }
+        }
+        return movMediums;
+    }
+
     private int getMediumRowIndex(Medium medium) throws KartException {
         Sheet sheet = spreadSheet.getSheet(medium.getCategory().getId());
         for (int i = 1; i < sheet.getRowCount(); i++) {
