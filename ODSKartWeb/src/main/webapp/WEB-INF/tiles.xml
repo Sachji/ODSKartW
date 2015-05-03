@@ -21,4 +21,16 @@
     <put-attribute name="body" value="/tiles/addCategory.jsp" />
     <put-attribute name="breadcrumb" value="/tiles/b_categ_add.jsp" />
   </definition>
+  <definition name="odskart.categoryDetail" template="/layouts/default.jsp">
+    <put-attribute name="css" value="/tiles/css.jsp" />
+    <put-attribute name="title" value="Category detail" />
+    <put-attribute name="body" value="/tiles/catDetail.jsp" />
+    <put-attribute name="breadcrumb" value="/tiles/b_categ_detail.jsp" />
+  </definition>
+  <definition name="odskart.addMedium" template="/layouts/default.jsp">
+    <put-attribute name="css" value="/tiles/css.jsp" />
+    <put-attribute name="title" value="Add medium" />
+    <put-attribute name="body" value="/tiles/addMedium.jsp" />
+    <put-attribute name="breadcrumb" value="/tiles/b_medium_add.jsp" />
+  </definition>
 </tiles-definitions>

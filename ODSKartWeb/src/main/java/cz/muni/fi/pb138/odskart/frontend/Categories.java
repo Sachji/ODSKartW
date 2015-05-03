@@ -31,7 +31,7 @@ public class Categories extends HttpServlet {
 
     private KartManager manager;
 
-    private boolean prepareManager(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private boolean prepareManager(HttpServletResponse response) throws IOException {
         File file = new File(getServletContext().getRealPath(ODS_PATH));
         try {
             manager = new KartManagerImpl(file);
@@ -86,7 +86,7 @@ public class Categories extends HttpServlet {
                 File file = new File(getServletContext().getRealPath(ODS_PATH));
                 manager = new KartManagerImpl(file);
                 manager.removeCategory(Integer.parseInt(request.getParameter("id")));
-                response.sendRedirect(request.getContextPath() + "/Categories");
+                response.sendRedirect(request.getContextPath() + CAT_LIST);
             } catch (KartException ex) {
                 Logger.getLogger(Categories.class.getName()).log(Level.SEVERE, null, ex);
                 request.setAttribute("error", ex.getMessage());
@@ -108,7 +108,7 @@ public class Categories extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(!prepareManager(request, response)){
+        if(!prepareManager(response)){
             return;
         }
         String action = request.getServletPath();
@@ -132,7 +132,7 @@ public class Categories extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(!prepareManager(request, response)){
+        if(!prepareManager(response)){
             return;
         }
         String action = request.getServletPath();
