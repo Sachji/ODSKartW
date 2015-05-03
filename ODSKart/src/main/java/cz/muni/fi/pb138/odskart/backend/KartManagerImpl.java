@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jopendocument.dom.spreadsheet.Sheet;
 import org.jopendocument.dom.spreadsheet.SpreadSheet;
 
@@ -22,11 +24,22 @@ public class KartManagerImpl implements KartManager {
     public List<Category> getCategoryList() {
         List<Category> list = new ArrayList<>();
         for (int i = 0; i < spreadSheet.getSheetCount(); i++) {
-            Sheet sheet = spreadSheet.getSheet(i);
-
-            list.add(new Category(i, sheet.getColumnCount() - 1, sheet.getName()));
+            try {
+                list.add(getCategory(i));
+            } catch (KartException ex) {
+                Logger.getLogger(KartManagerImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return list;
+    }
+    
+    @Override
+    public Category getCategory(int id) throws KartException {
+        if(id >= spreadSheet.getSheetCount()){
+            throw new KartException("Category with this ID doesn't exist");
+        }
+        Sheet sheet = spreadSheet.getSheet(id);
+        return new Category(id, sheet.getColumnCount() - 1, sheet.getName());
     }
 
     @Override
@@ -77,7 +90,9 @@ public class KartManagerImpl implements KartManager {
         if (medium.getMovies().size() > medium.getCategory().getMaxMediumMovies()) {
             throw new IllegalArgumentException("Medium has more movies than category allows");
         }
-
+        if (medium.getMovies().isEmpty()) {
+            throw new KartException("Medium has to have at least one movie");
+        }
         Sheet sheet = spreadSheet.getSheet(medium.getCategory().getId());
 
         // set new id
