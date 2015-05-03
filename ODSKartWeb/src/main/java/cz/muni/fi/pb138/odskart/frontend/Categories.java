@@ -26,35 +26,31 @@ public class Categories extends HttpServlet {
     static final String CAT_DELETE = "/DeleteCategory";
     static final String CAT_ADD = "/AddCategory";
     private static final String ODS_PATH = "/kart.ods";
-    private static final String JSP_LIST = "/WEB-INF/jsp/categories.jsp";
-    private static final String JSP_FORM = "/WEB-INF/jsp/addCategory.jsp";
+    private static final String JSP_LIST = "/jsp/categories.jsp";
+    private static final String JSP_FORM = "/jsp/addCategory.jsp";
 
     private KartManager manager;
 
-    private void prepareManager() {
+    private boolean prepareManager(HttpServletRequest request, HttpServletResponse response) throws IOException {
         File file = new File(getServletContext().getRealPath(ODS_PATH));
         try {
             manager = new KartManagerImpl(file);
+            return true;
         } catch (IOException ex) {
             Logger.getLogger(Categories.class.getName()).log(Level.SEVERE, null, ex);
+            response.sendError(500, "Error accessing ODS file. Error message: " + ex.getMessage());
+            return false;
         }
     }
 
     private void categoryList(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        File file = new File(getServletContext().getRealPath(ODS_PATH));
-        try {
-            manager = new KartManagerImpl(file);
-        } catch (IOException ex) {
-            Logger.getLogger(Categories.class.getName()).log(Level.SEVERE, null, ex);
-        }
         request.setAttribute("categories", manager.getCategoryList());
         request.getRequestDispatcher(JSP_LIST).forward(request, response);
     }
 
     private void addCategory(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        prepareManager();
         if (request.getMethod().equals("POST")) {
             if (request.getParameter("cancel") != null) {
                 response.sendRedirect(request.getContextPath() + CAT_LIST);
@@ -112,6 +108,9 @@ public class Categories extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if(!prepareManager(request, response)){
+            return;
+        }
         String action = request.getServletPath();
         switch (action) {
             case CAT_ADD:
@@ -133,6 +132,9 @@ public class Categories extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        if(!prepareManager(request, response)){
+            return;
+        }
         String action = request.getServletPath();
         switch (action) {
             case CAT_DELETE:
