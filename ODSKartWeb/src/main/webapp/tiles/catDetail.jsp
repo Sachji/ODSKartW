@@ -1,12 +1,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<h1>${category.name}</h1>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<h1 style="display:inline;">${category.name}</h1>
 <c:if test="${not empty error}">
     <div class="alert alert-danger">
         <c:out value="${error}"/>
     </div>
 </c:if>
-<a href="<c:url value="/AddMedium?id=${category.id}" />">Add medium</a>
+<a href="<c:url value="/AddMedium?id=${category.id}"/>">
+    <button class="btn btn-sm btn-link">Add medium</button>
+</a>
 <table class="table table-striped">
     <thead>
         <tr><th>#</th>
@@ -24,8 +28,13 @@
                 <c:forEach items="${medium.movies}" var="movie">
                     <td><c:out value="${movie.name}"/></td>
                 </c:forEach>
+                <c:forEach begin="${fn:length(medium.movies) + 1}" end="${category.maxMediumMovies}" varStatus="loop">
+                    <td></td>
+                </c:forEach>
                 <td>
-
+                    <form method="post" action="${pageContext.request.contextPath}/DeleteMedium?id=${category.id}&medium_id=${medium.id}">
+                        <input class="btn btn-sm btn-danger" type="Submit" value="Delete" name="Delete">
+                    </form>
                 </td>
             </tr>
         </c:forEach>

@@ -25,11 +25,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ThreeDots
  */
-@WebServlet(name = "Category", urlPatterns = {CategoryDetail.CAT_DETAIL, CategoryDetail.MEDIUM_ADD})
+@WebServlet(name = "Category", urlPatterns = {CategoryDetail.CAT_DETAIL, CategoryDetail.MEDIUM_ADD, CategoryDetail.MEDIUM_DELETE})
 public class CategoryDetail extends HttpServlet {
 
     static final String CAT_DETAIL = "/Category";
     static final String MEDIUM_ADD = "/AddMedium";
+    static final String MEDIUM_DELETE = "/DeleteMedium";
     private static final String ODS_PATH = "/kart.ods";
     private static final String JSP_LIST = "/jsp/catDetail.jsp";
     private static final String JSP_ADD_MEDIUM = "/jsp/addMedium.jsp";
@@ -48,28 +49,24 @@ public class CategoryDetail extends HttpServlet {
         }
     }
 
-    private void showCategory(HttpServletRequest request, HttpServletResponse response) 
+    private void showCategory(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        if (request.getMethod().equals("GET")) {
-            if (request.getParameter("id") != null) {
-                try {
-                    int id = Integer.parseInt(request.getParameter("id"));
-                    Category category = manager.getCategory(id);
-                    request.setAttribute("mediums", manager.getCategoryMediums(category));
-                    request.setAttribute("category", category);
-                    request.getRequestDispatcher(JSP_LIST).forward(request, response);
-                } catch (KartException | NumberFormatException | NullPointerException ex) {
-                    Logger.getLogger(CategoryDetail.class.getName()).log(Level.SEVERE, null, ex);
-                    response.sendRedirect(request.getContextPath() + Categories.CAT_LIST);
-                }
-            } else {
+        if (request.getParameter("id") != null) {
+            try {
+                int id = Integer.parseInt(request.getParameter("id"));
+                Category category = manager.getCategory(id);
+                request.setAttribute("mediums", manager.getCategoryMediums(category));
+                request.setAttribute("category", category);
+                request.getRequestDispatcher(JSP_LIST).forward(request, response);
+            } catch (KartException | NumberFormatException | NullPointerException ex) {
+                Logger.getLogger(CategoryDetail.class.getName()).log(Level.SEVERE, null, ex);
                 response.sendRedirect(request.getContextPath() + Categories.CAT_LIST);
             }
-        } else{
-            
+        } else {
+            response.sendRedirect(request.getContextPath() + Categories.CAT_LIST);
         }
     }
-    
+
     private void addMedium(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         if (request.getMethod().equals("POST")) {
             AddMediumForm form;
@@ -111,7 +108,30 @@ public class CategoryDetail extends HttpServlet {
             } else {
                 response.sendRedirect(request.getContextPath() + Categories.CAT_LIST);
             }
-            
+
+        }
+    }
+
+    private void deleteMedium(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
+        if (request.getMethod().equals("POST")) {
+            if (request.getParameter("medium_id") != null || request.getParameter("id") != null) {
+                try {
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    int medium_id = Integer.parseInt(request.getParameter("medium_id"));
+
+                    Category category = manager.getCategory(id);
+                    Medium m = new Medium(category);
+                    m.setId(medium_id);
+
+                    manager.removeMedium(m);
+                    response.sendRedirect(request.getContextPath() + CAT_DETAIL + "?id=" + id);
+                } catch (KartException | NumberFormatException ex) {
+                    Logger.getLogger(Categories.class.getName()).log(Level.SEVERE, null, ex);
+                    request.setAttribute("error", ex.getMessage());
+                    showCategory(request, response);
+                }
+            }
         }
     }
 
@@ -159,11 +179,13 @@ public class CategoryDetail extends HttpServlet {
             case MEDIUM_ADD:
                 addMedium(request, response);
                 break;
+            case MEDIUM_DELETE:
+                deleteMedium(request, response);
+                break;
             default:
                 showCategory(request, response);
         }
     }
     // </editor-fold>
-
 
 }

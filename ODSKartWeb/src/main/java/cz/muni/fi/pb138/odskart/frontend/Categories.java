@@ -83,8 +83,6 @@ public class Categories extends HttpServlet {
             throws IOException, ServletException {
         if (request.getMethod().equals("POST")) {
             try {
-                File file = new File(getServletContext().getRealPath(ODS_PATH));
-                manager = new KartManagerImpl(file);
                 manager.removeCategory(Integer.parseInt(request.getParameter("id")));
                 response.sendRedirect(request.getContextPath() + CAT_LIST);
             } catch (KartException ex) {
