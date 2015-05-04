@@ -2,7 +2,6 @@ package cz.muni.fi.pb138.odskart.backend;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Medium {
 
@@ -11,9 +10,18 @@ public class Medium {
     private Category category;
 
     public Medium(Category category) {
-        this.id = null; // ID is not always known at point of creating instance
+        this.id = null;
         this.movies = new ArrayList<>();
         this.category = category;
+    }
+    
+    public Medium(Medium medium) {
+        this.id = medium.getId();
+        this.category = medium.getCategory();
+        this.movies = new ArrayList<>();
+        for(Movie m : medium.movies) {
+            this.movies.add(m);
+        }
     }
 
     public Integer getId() {
