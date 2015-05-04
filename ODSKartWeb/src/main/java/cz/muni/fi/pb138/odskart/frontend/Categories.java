@@ -1,47 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pb138.odskart.frontend;
 
 import cz.muni.fi.pb138.odskart.backend.Category;
 import cz.muni.fi.pb138.odskart.backend.KartException;
-import cz.muni.fi.pb138.odskart.backend.KartManager;
-import cz.muni.fi.pb138.odskart.backend.KartManagerImpl;
-import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "Categories", urlPatterns = {Categories.CAT_LIST, Categories.CAT_DELETE, Categories.CAT_ADD})
-public class Categories extends HttpServlet {
+public class Categories extends BaseServlet {
 
     static final String CAT_LIST = "/Categories";
     static final String CAT_DELETE = "/DeleteCategory";
     static final String CAT_ADD = "/AddCategory";
-    private static final String ODS_PATH = "/kart.ods";
     private static final String JSP_LIST = "/jsp/categories.jsp";
     private static final String JSP_FORM = "/jsp/addCategory.jsp";
-
-    private KartManager manager;
-
-    private boolean prepareManager(HttpServletResponse response) throws IOException {
-        File file = new File(getServletContext().getRealPath(ODS_PATH));
-        try {
-            manager = new KartManagerImpl(file);
-            return true;
-        } catch (IOException ex) {
-            Logger.getLogger(Categories.class.getName()).log(Level.SEVERE, null, ex);
-            response.sendError(500, "Error accessing ODS file. Error message: " + ex.getMessage());
-            return false;
-        }
-    }
 
     private void categoryList(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
@@ -81,16 +57,14 @@ public class Categories extends HttpServlet {
 
     private void deleteCategory(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        if (request.getMethod().equals("POST")) {
-            try {
-                manager.removeCategory(Integer.parseInt(request.getParameter("id")));
-                response.sendRedirect(request.getContextPath() + CAT_LIST);
-            } catch (KartException ex) {
-                Logger.getLogger(Categories.class.getName()).log(Level.SEVERE, null, ex);
-                request.setAttribute("error", ex.getMessage());
+        try {
+            manager.removeCategory(Integer.parseInt(request.getParameter("id")));
+            response.sendRedirect(request.getContextPath() + CAT_LIST);
+        } catch (KartException ex) {
+            Logger.getLogger(Categories.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("error", ex.getMessage());
 
-                categoryList(request, response);
-            }
+            categoryList(request, response);
         }
     }
 
@@ -106,7 +80,7 @@ public class Categories extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(!prepareManager(response)){
+        if (!prepareManager(response)) {
             return;
         }
         String action = request.getServletPath();
@@ -130,7 +104,7 @@ public class Categories extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(!prepareManager(response)){
+        if (!prepareManager(response)) {
             return;
         }
         String action = request.getServletPath();
@@ -146,14 +120,5 @@ public class Categories extends HttpServlet {
         }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    // </editor-fold>
 }
