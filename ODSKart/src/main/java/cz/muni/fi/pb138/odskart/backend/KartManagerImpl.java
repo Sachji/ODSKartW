@@ -32,10 +32,10 @@ public class KartManagerImpl implements KartManager {
         }
         return list;
     }
-    
+
     @Override
     public Category getCategory(int id) throws KartException {
-        if(id >= spreadSheet.getSheetCount()){
+        if (id >= spreadSheet.getSheetCount()) {
             throw new KartException("Category with this ID doesn't exist");
         }
         Sheet sheet = spreadSheet.getSheet(id);
@@ -51,7 +51,7 @@ public class KartManagerImpl implements KartManager {
         Sheet newSheet = spreadSheet.addSheet(category.getName());
         newSheet.setColumnCount(category.getMaxMediumMovies() + 1);
         newSheet.getCellAt(0, 0).setValue("ID");
-        for(int i = 0; i < category.getMaxMediumMovies(); i++) {
+        for (int i = 0; i < category.getMaxMediumMovies(); i++) {
             newSheet.getCellAt(i + 1, 0).setValue("Movie #" + Integer.toString(i + 1));
         }
         try {
@@ -186,6 +186,20 @@ public class KartManagerImpl implements KartManager {
             }
         }
         return movMediums;
+    }
+
+    @Override
+    public Medium getMedium(int categoryID, int mediumID) throws KartException {
+
+        Category cat = getCategory(categoryID);
+        List<Medium> mediums = getCategoryMediums(cat);
+
+        for (Medium m : mediums) {
+            if (m.getId() == mediumID) {
+                return m;
+            }            
+        }
+        throw new KartException("Medium with given ID not found");
     }
 
     private int getMediumRowIndex(Medium medium) throws KartException {
