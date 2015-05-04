@@ -126,7 +126,7 @@ public class CategoryDetail extends BaseServlet {
         }
         try {
             manager.removeMedium(medium);
-            manager.saveFile();            
+            manager.saveFile();
         } catch (KartException ex) {
             Logger.getLogger(CategoryDetail.class.getName()).log(Level.SEVERE, null, ex);
             request.setAttribute("error", ex.getMessage());
@@ -154,6 +154,7 @@ public class CategoryDetail extends BaseServlet {
             request.getRequestDispatcher(JSP_MOVE_MEDIUM).forward(request, response);
             return;
         }
+        Medium initialMedium = new Medium(medium);
         try {
             manager.moveMedium(destCategory, medium);
             manager.saveFile();
@@ -161,6 +162,8 @@ public class CategoryDetail extends BaseServlet {
         } catch (KartException ex) {
             Logger.getLogger(CategoryDetail.class.getName()).log(Level.SEVERE, null, ex);
             request.setAttribute("error", ex.getMessage());
+            request.setAttribute("medium", initialMedium);
+            request.setAttribute("categories", manager.getCategoryList());
             request.getRequestDispatcher(JSP_MOVE_MEDIUM).forward(request, response);
         }
 
