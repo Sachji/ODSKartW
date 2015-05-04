@@ -54,11 +54,6 @@ public class KartManagerImpl implements KartManager {
         for (int i = 0; i < category.getMaxMediumMovies(); i++) {
             newSheet.getCellAt(i + 1, 0).setValue("Movie #" + Integer.toString(i + 1));
         }
-        try {
-            spreadSheet.saveAs(file);
-        } catch (IOException ex) {
-            throw new KartException("Unable to save file: " + ex.getMessage(), ex);
-        }
     }
 
     @Override
@@ -72,11 +67,6 @@ public class KartManagerImpl implements KartManager {
         }
         Sheet toRemove = spreadSheet.getSheet(id);
         toRemove.detach();
-        try {
-            spreadSheet.saveAs(file);
-        } catch (IOException ex) {
-            throw new KartException("Unable to save file: " + ex.getMessage(), ex);
-        }
     }
 
     @Override
@@ -115,12 +105,6 @@ public class KartManagerImpl implements KartManager {
             String movieName = medium.getMovies().get(j).getName();
             sheet.getCellAt(j + 1, rowIndex).setValue(movieName);
         }
-        try {
-            spreadSheet.saveAs(file);
-        } catch (IOException ex) {
-            throw new KartException("Unable to save file: " + ex.getMessage(), ex);
-        }
-
     }
 
     @Override
@@ -135,13 +119,6 @@ public class KartManagerImpl implements KartManager {
 
         Sheet sheet = spreadSheet.getSheet(medium.getCategory().getId());
         sheet.removeRow(getMediumRowIndex(medium));
-
-        try {
-            spreadSheet.saveAs(file);
-        } catch (IOException ex) {
-            throw new KartException("Unable to save file: " + ex.getMessage(), ex);
-        }
-
     }
 
     @Override
@@ -197,7 +174,7 @@ public class KartManagerImpl implements KartManager {
         for (Medium m : mediums) {
             if (m.getId() == mediumID) {
                 return m;
-            }            
+            }
         }
         throw new KartException("Medium with given ID not found");
     }
@@ -212,6 +189,15 @@ public class KartManagerImpl implements KartManager {
         }
 
         throw new KartException("Medium with ID " + medium.getId() + " was not found.");
+    }
+
+    public void saveFile() throws KartException {
+        
+        try {
+            spreadSheet.saveAs(file);
+        } catch (IOException ex) {
+            throw new KartException("Unable to save file: " + ex.getMessage(), ex);
+        }
     }
 
 }

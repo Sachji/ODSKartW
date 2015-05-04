@@ -13,5 +13,6 @@ public interface KartManager {
     void removeCategory(int id) throws KartException;
     void addMedium(Medium medium) throws KartException;
     void moveMedium(Category newCat, Medium medium)  throws KartException;
-    void removeMedium(Medium medium) throws KartException;    
+    void removeMedium(Medium medium) throws KartException;
+    void saveFile() throws KartException;
 }
