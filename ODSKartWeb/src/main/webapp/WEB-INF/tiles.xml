@@ -33,4 +33,10 @@
     <put-attribute name="body" value="/tiles/addMedium.jsp" />
     <put-attribute name="breadcrumb" value="/tiles/b_medium_add.jsp" />
   </definition>
+  <definition name="odskart.moveMedium" template="/layouts/default.jsp">
+    <put-attribute name="css" value="/tiles/css.jsp" />
+    <put-attribute name="title" value="Move medium" />
+    <put-attribute name="body" value="/tiles/moveMedium.jsp" />
+    <put-attribute name="breadcrumb" value="/tiles/b_medium_move.jsp" />
+  </definition>
 </tiles-definitions>

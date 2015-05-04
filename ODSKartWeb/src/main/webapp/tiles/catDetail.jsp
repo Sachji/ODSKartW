@@ -17,8 +17,7 @@
                 <c:forEach begin="1" end="${category.maxMediumMovies}" varStatus="loop">
                 <th>Movie # <c:out value="${loop.index}"/></th>
                 </c:forEach>
-
-            <th>Delete</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -32,8 +31,13 @@
                     <td></td>
                 </c:forEach>
                 <td>
-                    <form method="post" action="${pageContext.request.contextPath}/DeleteMedium?id=${category.id}&medium_id=${medium.id}">
-                        <input class="btn btn-sm btn-danger" type="Submit" value="Delete" name="Delete">
+                    <div class="btn-group btn-group-sm" role="group">
+                        <a class="btn btn-warning" href="<c:url value="/MoveMedium?id=${category.id}&medium_id=${medium.id}"/>">Move</a>
+                        <input type="hidden" class="btn"><!-- fake sibling to right -->
+                    </div>
+                    <form class="btn-group btn-group-sm" method="post" action="${pageContext.request.contextPath}/DeleteMedium?id=${category.id}&medium_id=${medium.id}">
+                        <input type="hidden" class="btn"><!-- fake sibling to left -->
+                        <button class="btn btn-danger" type="Submit" name="Delete">Delete</button>
                     </form>
                 </td>
             </tr>
@@ -44,3 +48,7 @@
 <form method="post" action="${pageContext.request.contextPath}/DeleteCategory?id=${category.id}">
     <input class="btn btn-sm btn-danger" type="Submit" value="Delete this category" name="Delete">
 </form>
+
+<style type="text/css">
+    div.btn-group + form.btn-group {margin-left: -5px;}
+</style>

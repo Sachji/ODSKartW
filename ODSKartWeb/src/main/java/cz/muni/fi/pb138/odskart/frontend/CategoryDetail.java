@@ -20,17 +20,37 @@ public class CategoryDetail extends BaseServlet {
     static final String MEDIUM_MOVE = "/MoveMedium";
     private static final String JSP_LIST = "/jsp/catDetail.jsp";
     private static final String JSP_ADD_MEDIUM = "/jsp/addMedium.jsp";
+    private static final String JSP_MOVE_MEDIUM = "/jsp/moveMedium.jsp";
 
-    private Category tryGetCategory(HttpServletRequest request, HttpServletResponse response)
+    private Category tryGetCategory(HttpServletRequest request, HttpServletResponse response, String param)
             throws IOException {
-        if (request.getParameter("id") != null) {
+        if (request.getParameter(param) != null) {
             try {
-                int id = Integer.parseInt(request.getParameter("id"));
+                int id = Integer.parseInt(request.getParameter(param));
                 Category category = manager.getCategory(id);
                 return category;
             } catch (KartException | NumberFormatException | NullPointerException ex) {
                 Logger.getLogger(CategoryDetail.class.getName()).log(Level.SEVERE, null, ex);
-                response.sendRedirect(request.getContextPath() + Categories.CAT_LIST);
+                request.setAttribute("error", ex.getMessage());
+            }
+        } else {
+            response.sendRedirect(request.getContextPath() + Categories.CAT_LIST);
+        }
+        return null;
+    }
+
+    private Medium tryGetMedium(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        if (request.getParameter("medium_id") != null && request.getParameter("id") != null) {
+            try {
+                int id = Integer.parseInt(request.getParameter("id"));
+                int medium_id = Integer.parseInt(request.getParameter("medium_id"));
+
+                Medium m = manager.getMedium(id, medium_id);
+                return m;
+            } catch (KartException | NumberFormatException ex) {
+                Logger.getLogger(Categories.class.getName()).log(Level.SEVERE, null, ex);
+                request.setAttribute("error", ex.getMessage());
             }
         } else {
             response.sendRedirect(request.getContextPath() + Categories.CAT_LIST);
@@ -41,7 +61,8 @@ public class CategoryDetail extends BaseServlet {
     private void showCategory(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         Category category;
-        if ((category = tryGetCategory(request, response)) == null) {
+        if ((category = tryGetCategory(request, response, "id")) == null) {
+            response.sendRedirect(request.getContextPath() + Categories.CAT_LIST);
             return;
         }
         request.setAttribute("mediums", manager.getCategoryMediums(category));
@@ -87,7 +108,8 @@ public class CategoryDetail extends BaseServlet {
     private void addMediumGET(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         Category category;
-        if ((category = tryGetCategory(request, response)) == null) {
+        if ((category = tryGetCategory(request, response, "id")) == null) {
+            response.sendRedirect(request.getContextPath() + Categories.CAT_LIST);
             return;
         }
         request.setAttribute("category", category);
@@ -96,37 +118,48 @@ public class CategoryDetail extends BaseServlet {
 
     private void deleteMedium(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        if (request.getParameter("medium_id") != null && request.getParameter("id") != null) {
-            try {
-                int id = Integer.parseInt(request.getParameter("id"));
-                int medium_id = Integer.parseInt(request.getParameter("medium_id"));
-
-                Category category = manager.getCategory(id);
-                Medium m = new Medium(category);
-                m.setId(medium_id);
-
-                manager.removeMedium(m);
-                response.sendRedirect(request.getContextPath() + CAT_DETAIL + "?id=" + id);
-
-            } catch (KartException | NumberFormatException ex) {
-                Logger.getLogger(Categories.class
-                        .getName()).log(Level.SEVERE, null, ex);
-                request.setAttribute(
-                        "error", ex.getMessage());
-                showCategory(request, response);
-            }
+        Medium medium;
+        if ((medium = tryGetMedium(request, response)) == null) {
+            showCategory(request, response);
+            return;
         }
+        try {
+            manager.removeMedium(medium);
+        } catch (KartException ex) {
+            Logger.getLogger(CategoryDetail.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("error", ex.getMessage());
+        }
+        response.sendRedirect(request.getContextPath() + CAT_DETAIL + "?id=" + medium.getCategory().getId());
+
     }
 
-    private void moveMediumGET(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        if (request.getParameter("medium_id") != null && request.getParameter("id") != null) {
-
-        } else {
-            response.sendRedirect(request.getContextPath() + Categories.CAT_LIST);
+    private void moveMediumGET(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
+        Medium medium;
+        if ((medium = tryGetMedium(request, response)) == null) {
+            return;
         }
+        request.setAttribute("medium", medium);
+        request.setAttribute("categories", manager.getCategoryList());
+        request.getRequestDispatcher(JSP_MOVE_MEDIUM).forward(request, response);
     }
 
-    private void moveMediumPOST(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void moveMediumPOST(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
+        Medium medium;
+        Category destCategory;
+        if ((medium = tryGetMedium(request, response)) == null || (destCategory = tryGetCategory(request, response, "dest_category")) == null) {
+            request.getRequestDispatcher(JSP_MOVE_MEDIUM).forward(request, response);
+            return;
+        }
+        try {
+            manager.moveMedium(destCategory, medium);
+            response.sendRedirect(request.getContextPath() + CAT_DETAIL + "?id=" + destCategory.getId());
+        } catch (KartException ex) {
+            Logger.getLogger(CategoryDetail.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("error", ex.getMessage());
+            request.getRequestDispatcher(JSP_MOVE_MEDIUM).forward(request, response);
+        }
 
     }
 
@@ -184,7 +217,7 @@ public class CategoryDetail extends BaseServlet {
                 moveMediumPOST(request, response);
                 break;
             default:
-                showCategory(request, response);
+                throw new RuntimeException("Unknown operation: " + request.getServletPath());
         }
     }
     // </editor-fold>
