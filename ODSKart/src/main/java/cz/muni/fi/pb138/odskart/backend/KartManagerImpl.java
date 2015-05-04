@@ -88,7 +88,7 @@ public class KartManagerImpl implements KartManager {
             throw new IllegalArgumentException("Medium category is null");
         }
         if (medium.getMovies().size() > medium.getCategory().getMaxMediumMovies()) {
-            throw new IllegalArgumentException("Medium has more movies than category allows");
+            throw new KartException("Medium has more movies than category allows");
         }
         if (medium.getMovies().isEmpty()) {
             throw new KartException("Medium has to have at least one movie");
