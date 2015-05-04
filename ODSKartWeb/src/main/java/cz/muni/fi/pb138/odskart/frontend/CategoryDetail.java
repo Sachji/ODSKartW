@@ -90,6 +90,7 @@ public class CategoryDetail extends BaseServlet {
         } else {
             try {
                 manager.addMedium(medium);
+                manager.saveFile();
 
             } catch (KartException ex) {
                 Logger.getLogger(Categories.class
@@ -125,6 +126,7 @@ public class CategoryDetail extends BaseServlet {
         }
         try {
             manager.removeMedium(medium);
+            manager.saveFile();            
         } catch (KartException ex) {
             Logger.getLogger(CategoryDetail.class.getName()).log(Level.SEVERE, null, ex);
             request.setAttribute("error", ex.getMessage());

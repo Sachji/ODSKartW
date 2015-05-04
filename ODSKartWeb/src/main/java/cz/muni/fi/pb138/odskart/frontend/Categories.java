@@ -43,6 +43,7 @@ public class Categories extends BaseServlet {
             } else {
                 try {
                     manager.addCategory(category);
+                    manager.saveFile();
                 } catch (KartException ex) {
                     Logger.getLogger(Categories.class.getName()).log(Level.SEVERE, null, ex);
                     request.setAttribute("error", ex.getMessage());
@@ -59,6 +60,7 @@ public class Categories extends BaseServlet {
             throws IOException, ServletException {
         try {
             manager.removeCategory(Integer.parseInt(request.getParameter("id")));
+            manager.saveFile();
             response.sendRedirect(request.getContextPath() + CAT_LIST);
         } catch (KartException ex) {
             Logger.getLogger(Categories.class.getName()).log(Level.SEVERE, null, ex);
