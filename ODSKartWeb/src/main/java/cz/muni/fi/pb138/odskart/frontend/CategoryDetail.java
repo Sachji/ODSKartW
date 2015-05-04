@@ -156,6 +156,7 @@ public class CategoryDetail extends BaseServlet {
         }
         try {
             manager.moveMedium(destCategory, medium);
+            manager.saveFile();
             response.sendRedirect(request.getContextPath() + CAT_DETAIL + "?id=" + destCategory.getId());
         } catch (KartException ex) {
             Logger.getLogger(CategoryDetail.class.getName()).log(Level.SEVERE, null, ex);
