@@ -21,8 +21,13 @@ public class Search extends BaseServlet {
 
     private void search(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("mediums", manager.findMovie(request.getParameter("movie_name")));
-        request.getRequestDispatcher(SEARCH_RESULTS_JSP).forward(request, response);
+        try{
+            request.setAttribute("mediums", manager.findMovie(request.getParameter("movie_name")));
+            request.getRequestDispatcher(SEARCH_RESULTS_JSP).forward(request, response);
+        } catch(IllegalArgumentException ex){
+            request.setAttribute("error", ex.getMessage());
+            request.getRequestDispatcher(SEARCH_JSP).forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
