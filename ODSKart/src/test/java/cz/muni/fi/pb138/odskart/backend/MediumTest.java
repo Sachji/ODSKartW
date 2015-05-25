@@ -31,7 +31,7 @@ public class MediumTest {
     }
 
     @Test
-    public void idIsLessEqualZeroTest() {        
+    public void idIsLessEqualZeroTest() {
         Medium medium = new Medium(new Category(1, 1, "new"));
         Integer id = 0;
         expected.expect(IllegalArgumentException.class);
@@ -48,7 +48,7 @@ public class MediumTest {
 
     @Test
     public void getMovieNameNullTest() {
-        
+
         String name = null;
         Medium medium = new Medium(new Category(1, 1, "new"));
         expected.expect(IllegalArgumentException.class);
@@ -57,7 +57,7 @@ public class MediumTest {
 
     @Test
     public void getMovieNameEmptyTest() {
-        
+
         String name = "";
         Medium medium = new Medium(new Category(1, 1, "new"));
         expected.expect(IllegalArgumentException.class);
@@ -81,6 +81,26 @@ public class MediumTest {
         assertEquals(id, medium.getId());
         assertEquals(movies, medium.getMovies());
         assertEquals(category, medium.getCategory());
+    }
+
+    @Test
+    public void getMovieFoundTest() {
+        String name = "movie";
+        Movie movie = new Movie(name);
+        Medium medium = new Medium(new Category(1, 2, "category"));
+        medium.addMovie(movie);
+        assertEquals((Integer) 0, medium.getMovie(name));
+    }
+
+    @Test
+    public void getMovieNotFoundTest() {
+        String name = "movie";
+        String falseName = "muhehehe";
+        Integer expResult = -1;
+        Movie movie = new Movie(name);
+        Medium medium = new Medium(new Category(1, 2, "category"));
+        medium.addMovie(movie);
+        assertEquals(expResult, medium.getMovie(falseName));
     }
 
 }
