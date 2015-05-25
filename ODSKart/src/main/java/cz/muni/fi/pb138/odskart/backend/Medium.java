@@ -10,12 +10,19 @@ public class Medium {
     private Category category;
 
     public Medium(Category category) {
+        if (category == null) {
+            throw new IllegalArgumentException("Category is null");
+        }
         this.id = null;
         this.movies = new ArrayList<>();
         this.category = category;
+        
     }
     
     public Medium(Medium medium) {
+        if (medium == null) {
+            throw new IllegalArgumentException("Medium is null");
+        }
         this.id = medium.getId();
         this.category = medium.getCategory();
         this.movies = new ArrayList<>();
@@ -29,6 +36,9 @@ public class Medium {
     }
 
     public void setId(Integer id) {
+        if (id <= 0 || id == null ) {
+            throw new IllegalArgumentException("Id is less than zero or null");
+        }
         this.id = id;
     }
 
@@ -37,6 +47,9 @@ public class Medium {
     }
 
     public void setCategory(Category category) {
+        if (category == null ) {
+            throw new IllegalArgumentException("Category is null");
+        }
         this.category = category;
     }
 
@@ -45,6 +58,9 @@ public class Medium {
     }
 
     public void addMovie(Movie movie) {
+        if (movie == null ) {
+            throw new IllegalArgumentException("Movie is null");
+        }
         this.movies.add(movie);
     }
 
