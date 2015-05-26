@@ -53,6 +53,6 @@ public class MovieTest {
         assertEquals("new", movie.getName());
     }
 
-    
+        
 
 }
