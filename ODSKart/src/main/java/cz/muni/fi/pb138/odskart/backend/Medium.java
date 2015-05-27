@@ -2,6 +2,7 @@ package cz.muni.fi.pb138.odskart.backend;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Medium {
 
@@ -29,6 +30,29 @@ public class Medium {
         for(Movie m : medium.movies) {
             this.movies.add(m);
         }
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Medium)) {
+            return false;
+        }
+        Medium other = (Medium) obj;
+        if (!getId().equals(other.getId())) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 71 * hash + Objects.hashCode(this.id);
+        return hash;
     }
 
     public Integer getId() {
