@@ -17,7 +17,7 @@ public class KartException extends Exception {
      * Constructs an instance of <code>KartException</code> with the specified
      * detail message.
      *
-     * @param msg the detail message.
+     * @param msg                   the detail message.
      */
     public KartException(String msg) {
         super(msg);
@@ -25,13 +25,14 @@ public class KartException extends Exception {
     
     /**
      * Constructs an instance of <code>KartException</code> with the specified
-     * detail message.
+     * detail message and cause.
      *
-     * @param message the detail message
-     * 
+     * @param message               the detail message
+     * @param cause                 the cause of the exception
      */
     public KartException(String message, Throwable cause) {
         super(message, cause);
     }
+    
     
 }
