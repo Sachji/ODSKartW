@@ -10,9 +10,10 @@ import java.util.logging.Logger;
 import org.jopendocument.dom.spreadsheet.Sheet;
 import org.jopendocument.dom.spreadsheet.SpreadSheet;
 
-/** An implementation class for KartManager interface
+/**
+ * An implementation class for KartManager interface
  *
- * @author Jiří Šácha
+ * @author Jiří Šácha, Ondřej Skýba
  */
 public class KartManagerImpl implements KartManager {
 
@@ -196,7 +197,7 @@ public class KartManagerImpl implements KartManager {
     }
 
     public void saveFile() throws KartException {
-        
+
         try {
             spreadSheet.saveAs(file);
         } catch (IOException ex) {

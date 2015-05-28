@@ -115,7 +115,7 @@ public class KartManagerImplTest {
 
     @Test
     public void mediumCategoryIsNullTest() throws KartException {
-        Category category = null;        
+        Category category = null;
         expected.expect(IllegalArgumentException.class);
         Medium medium = new Medium(category);
         kartM.addMedium(medium);
@@ -173,7 +173,5 @@ public class KartManagerImplTest {
         Medium result = kartM.getMedium(catId, medId);
         assertTrue(result.equals(medium));
     }
-
-    
 
 }

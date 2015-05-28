@@ -4,19 +4,21 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 
-/** A class for managing media
+/**
+ * A class for managing media
  *
- * @author Jiří Šácha
+ * @author Jiří Šácha, Ondřej Skýba
  */
 public class Medium {
 
     private Integer id;
     private final List<Movie> movies;
     private Category category;
-    
-    /** A constructor for a medium based on its category
+
+    /**
+     * A constructor for a medium based on its category
      *
-     * @param category                      category of a medium, cannot be null
+     * @param category category of a medium, cannot be null
      */
     public Medium(Category category) {
         if (category == null) {
@@ -25,12 +27,13 @@ public class Medium {
         this.id = null;
         this.movies = new ArrayList<>();
         this.category = category;
-        
+
     }
-    
-    /** A constructor for a medium
+
+    /**
+     * A constructor for a medium
      *
-     * @param medium                        a specified medium, cannot be null
+     * @param medium a specified medium, cannot be null
      */
     public Medium(Medium medium) {
         if (medium == null) {
@@ -39,11 +42,11 @@ public class Medium {
         this.id = medium.getId();
         this.category = medium.getCategory();
         this.movies = new ArrayList<>();
-        for(Movie m : medium.movies) {
+        for (Movie m : medium.movies) {
             this.movies.add(m);
         }
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -59,76 +62,84 @@ public class Medium {
             return true;
         }
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 71 * hash + Objects.hashCode(this.id);
         return hash;
     }
-    
-    /** A getter method for the id of a medium
+
+    /**
+     * A getter method for the id of a medium
      *
-     * @return                              the id of a medium
+     * @return the id of a medium
      */
     public Integer getId() {
         return id;
     }
-    
-    /** A setter method for the id of a medium
+
+    /**
+     * A setter method for the id of a medium
      *
-     * @param id                            the id to be set, cannot be lower than zero or null
+     * @param id the id to be set, cannot be lower than zero or null
      */
     public void setId(Integer id) {
-        if (id <= 0 || id == null ) {
+        if (id <= 0 || id == null) {
             throw new IllegalArgumentException("Id is less than zero or null");
         }
         this.id = id;
     }
 
-    /** A getter method for the category of a medium
+    /**
+     * A getter method for the category of a medium
      *
-     * @return                              the category of a medium
+     * @return the category of a medium
      */
     public Category getCategory() {
         return category;
     }
 
-    /** A setter method for the category of a medium
+    /**
+     * A setter method for the category of a medium
      *
-     * @param category                      category to be set, cannot be null
+     * @param category category to be set, cannot be null
      */
     public void setCategory(Category category) {
-        if (category == null ) {
+        if (category == null) {
             throw new IllegalArgumentException("Category is null");
         }
         this.category = category;
     }
-    
-    /** A getter method for the movies of a medium
+
+    /**
+     * A getter method for the movies of a medium
      *
-     * @return                              a list of the movies of a medium
+     * @return a list of the movies of a medium
      */
     public List<Movie> getMovies() {
         return movies;
     }
-    
-    /** A method that adds a movie to a medium
+
+    /**
+     * A method that adds a movie to a medium
      *
-     * @param movie                         movie to be added, cannot be null
+     * @param movie movie to be added, cannot be null
      */
     public void addMovie(Movie movie) {
-        if (movie == null ) {
+        if (movie == null) {
             throw new IllegalArgumentException("Movie is null");
         }
         this.movies.add(movie);
     }
-    
-    /** A getter method for a movie based on its name
+
+    /**
+     * A getter method for a movie based on its name
      *
-     * @param name                          the name of a movie
-     * @return                              the specified movie
-     * @throws IllegalArgumentException     if the movie name is not specified or null
+     * @param name the name of a movie
+     * @return the specified movie
+     * @throws IllegalArgumentException if the movie name is not specified or
+     * null
      */
     public Integer getMovie(String name) {
         if (name == null || name.equals("")) {
@@ -138,9 +149,10 @@ public class Medium {
         return movies.indexOf(new Movie(name));
     }
 
-    /** toString method of this class
+    /**
+     * toString method of this class
      *
-     * @return                          toString representation of media and movies
+     * @return toString representation of media and movies
      */
     @Override
     public String toString() {

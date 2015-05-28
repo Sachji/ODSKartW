@@ -2,36 +2,37 @@ package cz.muni.fi.pb138.odskart.backend;
 
 import java.util.Objects;
 
-
-/** A class for managing movies
+/**
+ * A class for managing movies
  *
- * @author Jiří Šácha
+ * @author Jiří Šácha, Ondřej Skýba
  */
 public final class Movie {
 
     private String name;
 
-    
-    
-    /** A constructor for a movie
+    /**
+     * A constructor for a movie
      *
-     * @param name                  the name of a movie, cannot be null or empty string
+     * @param name the name of a movie, cannot be null or empty string
      */
-    public Movie(String name) {        
+    public Movie(String name) {
         setName(name);
     }
-   
-    /** A getter method for retrieving the name of a movie
+
+    /**
+     * A getter method for retrieving the name of a movie
      *
-     * @return                      the name of a movie
+     * @return the name of a movie
      */
     public String getName() {
         return name;
     }
-    
-    /** A setter method for the name of a movie
+
+    /**
+     * A setter method for the name of a movie
      *
-     * @param name                  the name to be set
+     * @param name the name to be set
      */
     public final void setName(String name) {
         if (name == null || name.equals("")) {
@@ -39,8 +40,8 @@ public final class Movie {
         }
         this.name = name;
     }
-    
-      @Override
+
+    @Override
     public boolean equals(Object obj) {
         if (obj == null) {
             return false;
@@ -55,7 +56,7 @@ public final class Movie {
             return true;
         }
     }
- 
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -63,14 +64,14 @@ public final class Movie {
         return hash;
     }
 
-    /** A toString method for this class
+    /**
+     * A toString method for this class
      *
-     * @return                              toString representation of a movie
+     * @return toString representation of a movie
      */
     @Override
     public String toString() {
         return "Movie{" + "name=" + name + '}';
     }
 
-    
 }

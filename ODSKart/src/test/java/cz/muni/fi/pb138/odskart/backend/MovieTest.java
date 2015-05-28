@@ -16,7 +16,7 @@ public class MovieTest {
 
     @Before
     public void setUp() {
-       movie = new Movie("new");
+        movie = new Movie("new");
     }
 
     @Rule
@@ -44,7 +44,7 @@ public class MovieTest {
     @Test
     public void setNameEmptyTest() {
         expected.expect(IllegalArgumentException.class);
-        String name = "";       
+        String name = "";
         movie.setName(name);
     }
 
@@ -52,7 +52,5 @@ public class MovieTest {
     public void validMovieTest() {
         assertEquals("new", movie.getName());
     }
-
-        
 
 }
