@@ -3,20 +3,36 @@ package cz.muni.fi.pb138.odskart.backend;
 import java.util.Objects;
 
 
+/** A class for managing movies
+ *
+ * @author Jiří Šácha
+ */
 public final class Movie {
 
     private String name;
 
     
-
+    
+    /** A constructor for a movie
+     *
+     * @param name                  the name of a movie, cannot be null or empty string
+     */
     public Movie(String name) {        
         setName(name);
     }
-
+   
+    /** A getter method for retrieving the name of a movie
+     *
+     * @return                      the name of a movie
+     */
     public String getName() {
         return name;
     }
-
+    
+    /** A setter method for the name of a movie
+     *
+     * @param name                  the name to be set
+     */
     public final void setName(String name) {
         if (name == null || name.equals("")) {
             throw new IllegalArgumentException("name is null or empty string");
@@ -47,4 +63,14 @@ public final class Movie {
         return hash;
     }
 
+    /** A toString method for this class
+     *
+     * @return                              toString representation of a movie
+     */
+    @Override
+    public String toString() {
+        return "Movie{" + "name=" + name + '}';
+    }
+
+    
 }

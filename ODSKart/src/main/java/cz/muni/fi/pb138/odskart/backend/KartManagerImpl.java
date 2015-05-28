@@ -10,6 +10,10 @@ import java.util.logging.Logger;
 import org.jopendocument.dom.spreadsheet.Sheet;
 import org.jopendocument.dom.spreadsheet.SpreadSheet;
 
+/** An implementation class for KartManager interface
+ *
+ * @author Jiří Šácha
+ */
 public class KartManagerImpl implements KartManager {
 
     private final File file;

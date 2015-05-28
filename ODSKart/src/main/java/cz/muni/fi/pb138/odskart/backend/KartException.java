@@ -1,5 +1,9 @@
 package cz.muni.fi.pb138.odskart.backend;
 
+/** A class describing KartException
+ *
+ * @author Jiří Šácha
+ */
 public class KartException extends Exception {
 
     /**
@@ -18,7 +22,14 @@ public class KartException extends Exception {
     public KartException(String msg) {
         super(msg);
     }
-
+    
+    /**
+     * Constructs an instance of <code>KartException</code> with the specified
+     * detail message.
+     *
+     * @param message the detail message
+     * 
+     */
     public KartException(String message, Throwable cause) {
         super(message, cause);
     }
