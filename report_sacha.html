@@ -1,0 +1,138 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ODSKartW - Z&aacute;v&#283;re&#269;n&yacute; report</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="article">
+<div class="titlepage">
+<div>
+<div><h2 class="title">
+<a name="id3702175"></a>
+            ODSKartW - Z&aacute;v&#283;re&#269;n&yacute; report
+        </h2></div>
+<div><div class="author"><h3 class="author">
+<span class="firstname">
+                Ji&#345;&iacute;
+            </span> <span class="surname">
+                &Scaron;&aacute;cha
+            </span>
+</h3></div></div>
+<div><p class="pubdate">
+        29.5.2015
+        </p></div>
+</div>
+<hr>
+</div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="section"><a href="#id3702187">
+        N&aacute;vrh aplikace
+        </a></span></dt>
+<dt><span class="section"><a href="#id3702212">
+        Tvorba aplikace
+        </a></span></dt>
+<dt><span class="section"><a href="#id3702236">
+        Tvorba grafick&eacute;ho rozhran&iacute;
+        </a></span></dt>
+<dt><span class="section"><a href="#id3702229">
+        Dokumentace
+        </a></span></dt>
+<dt><span class="section"><a href="#id3700027">
+        Lad&#283;n&iacute;, testov&aacute;n&iacute; a optimalizace
+        </a></span></dt>
+<dt><span class="section"><a href="#id3700004">
+        Pou&#382;it&eacute; technologie
+        </a></span></dt>
+<dt><span class="section"><a href="#id3700011">
+        Komplikace
+        </a></span></dt>
+<dt><span class="section"><a href="#id3700064">
+        Z&aacute;v&#283;r
+        </a></span></dt>
+</dl>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3702187"></a>
+        N&aacute;vrh aplikace
+        </h2></div></div></div>
+<p>
+         N&aacute;vrh aplikace byl v prvn&iacute;ch f&aacute;z&iacute;ch konzultov&aacute;n cel&yacute;m t&yacute;mem. Bylo rozhodnuto, &#382;e aplikace bude vyu&#382;&iacute;vat knihovnu jOpenDocument, kter&aacute; umo&#382;&#328;uje 
+            manipulaci se soubory form&aacute;tu OpenDocument (ODF). V dal&scaron;&iacute; f&aacute;zi byl vytvo&#345;en Vojt&#283;chem Ond&#345;ejem Class diagram, podle kter&eacute;ho byla vytvo&#345;ena kostra backendu aplikace.
+            Diagram byl pro doc&iacute;len&iacute; efektivity v&yacute;konu a vyt&iacute;&#382;en&iacute; pam&#283;ti n&#283;kolikr&aacute;t m&#283;n&#283;n. Na zm&#283;n&aacute;ch jsem se pod&iacute;lel s Ond&#345;ejem Sk&yacute;bou.
+        </p>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3702212"></a>
+        Tvorba aplikace
+        </h2></div></div></div>
+<p>
+          Mou hlavn&iacute; &uacute;lohou byla implementace backendu, kter&aacute; vyu&#382;&iacute;vala knihovnu jOpenDocument. Konkr&eacute;tn&#283; implementace t&#345;&iacute;d Category, KartException, KartManager,
+            KartManagerImpl, Medium, Movie. V prvn&iacute; f&aacute;zi jsem spolu s Ond&#345;ejem Sk&yacute;bou navrhnul rozhran&iacute; KartManager, kter&eacute; implementuje t&#345;&iacute;da KartManagerImpl. 
+            Tato t&#345;&iacute;da vyu&#382;&iacute;v&aacute; knihovnu jOpenDocument. Bylo nutn&eacute; zohlednit, jak&yacute;m zp&#367;sobem budou funkce rozhran&iacute; pou&#382;ity ve frontendu. V pr&#367;b&#283;hu jsem vy&#345;e&scaron;il
+            n&#283;kter&eacute; chyby, kter&eacute; jsou zaznamen&aacute;ny na github u&#269;tu projektu ODSKartW (Issue tracker). Na oprav&#283; element&aacute;rn&iacute;ch chyb se tak&eacute; pod&iacute;leli ostatn&iacute; &#269;lenov&eacute; t&yacute;mu.
+        </p>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3702236"></a>
+        Tvorba grafick&eacute;ho rozhran&iacute;
+        </h2></div></div></div>
+<p>
+        Tvorba grafick&eacute;ho rozhran&iacute; nebyla mou &uacute;lohou. Velkou m&#283;rou se na n&iacute; pod&iacute;lel Ond&#345;ej Sk&yacute;ba a tak&eacute; Vojt&#283;ch Ond&#345;ej.
+        </p>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3702229"></a>
+        Dokumentace
+        </h2></div></div></div>
+<p>
+        Provedl jsem koment&aacute;&#345;e k implementaci backendu, jinak jsem se na dokumentaci cel&eacute;ho projektu nepod&iacute;lel.
+        </p>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3700027"></a>
+        Lad&#283;n&iacute;, testov&aacute;n&iacute; a optimalizace
+        </h2></div></div></div>
+<p>
+        Lad&#283;n&iacute; v&#283;t&scaron;iny chyb backendu, optimalizace nebyly nutn&eacute;, jeliko&#382; byl n&aacute;vrh aplikace vypracov&aacute;n velmi kvalitn&#283;.
+        </p>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3700004"></a>
+        Pou&#382;it&eacute; technologie
+        </h2></div></div></div>
+<p>
+        jOpenDocument, IDE NetBeans, GitHub, Java 8
+        </p>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3700011"></a>
+        Komplikace
+        </h2></div></div></div>
+<p>
+        Hlavn&iacute; probl&eacute;m nastal p&#345;i programov&aacute;n&iacute; backendu, kdy bylo nutn&eacute; sezn&aacute;mit se s knihovnou jOpenDocument, 
+            bohu&#382;el knihovna m&aacute; minim&aacute;ln&iacute; dokumentaci, v n&#283;kter&yacute;ch p&#345;&iacute;padech bylo nutn&eacute; nahl&iacute;&#382;et do jej&iacute;ho 
+            zdrojov&eacute;ho k&oacute;du a sna&#382;it se pochopit n&#283;kter&eacute; slo&#382;it&#283;j&scaron;&iacute; konstrukce.
+        </p>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3700064"></a>
+        Z&aacute;v&#283;r
+        </h2></div></div></div>
+<p>
+        Tento projekt mi pomohl l&eacute;pe pochopit form&aacute;t ODF a nau&#269;it se jak&yacute;m zp&#367;sobem s n&iacute;m m&#367;&#382;eme pracovat skrze knihovnu Javy jOpenDocument . Dal&scaron;&iacute; v&yacute;hodou bylo 
+            sezn&aacute;men&iacute; se s prost&#345;ed&iacute;m Github, kter&eacute; mi pom&#367;&#382;e v budouc&iacute; projektech, na kter&yacute;ch budu pracovat.
+        </p>
+</div>
+</div></body>
+</html>
+

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V5.0//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<article>
+    <articleinfo>
+        <title>
+            ODSKartW - Závěrečný report
+        </title>
+        <author>
+            <firstname>
+                Jiří
+            </firstname>
+            <surname>
+                Šácha
+            </surname>
+        </author>
+        <pubdate>
+        29.5.2015
+        </pubdate>
+    </articleinfo>
+    <section>
+        <title>
+        Návrh aplikace
+        </title>
+        <para>
+         Návrh aplikace byl v prvních fázích konzultován celým týmem. Bylo rozhodnuto, že aplikace bude využívat knihovnu jOpenDocument, která umožňuje 
+            manipulaci se soubory formátu OpenDocument (ODF). V další fázi byl vytvořen Vojtěchem Ondřejem Class diagram, podle kterého byla vytvořena kostra backendu aplikace.
+            Diagram byl pro docílení efektivity výkonu a vytížení paměti několikrát měněn. Na změnách jsem se podílel s Ondřejem Skýbou.
+        </para>
+    </section>
+    <section>
+        <title>
+        Tvorba aplikace
+        </title>
+        <para>
+          Mou hlavní úlohou byla implementace backendu, která využívala knihovnu jOpenDocument. Konkrétně implementace tříd Category, KartException, KartManager,
+            KartManagerImpl, Medium, Movie. V první fázi jsem spolu s Ondřejem Skýbou navrhnul rozhraní KartManager, které implementuje třída KartManagerImpl. 
+            Tato třída využívá knihovnu jOpenDocument. Bylo nutné zohlednit, jakým způsobem budou funkce rozhraní použity ve frontendu. V průběhu jsem vyřešil
+            některé chyby, které jsou zaznamenány na github učtu projektu ODSKartW (Issue tracker). Na opravě elementárních chyb se také podíleli ostatní členové týmu.
+        </para>
+    </section>
+    <section>
+        <title>
+        Tvorba grafického rozhraní
+        </title>
+        <para>
+        Tvorba grafického rozhraní nebyla mou úlohou. Velkou měrou se na ní podílel Ondřej Skýba a také Vojtěch Ondřej.
+        </para>
+    </section>
+    <section>
+        <title>
+        Dokumentace
+        </title>
+        <para>
+        Provedl jsem komentáře k implementaci backendu, jinak jsem se na dokumentaci celého projektu nepodílel.
+        </para>
+    </section>
+    <section>
+        <title>
+        Ladění, testování a optimalizace
+        </title>
+        <para>
+        Ladění většiny chyb backendu, optimalizace nebyly nutné, jelikož byl návrh aplikace vypracován velmi kvalitně.
+        </para>
+    </section>
+    <section>
+        <title>
+        Použité technologie
+        </title>
+        <para>
+        jOpenDocument, IDE NetBeans, GitHub, Java 8
+        </para>
+    </section>
+    <section>
+        <title>
+        Komplikace
+        </title>
+        <para>
+        Hlavní problém nastal při programování backendu, kdy bylo nutné seznámit se s knihovnou jOpenDocument, 
+            bohužel knihovna má minimální dokumentaci, v některých případech bylo nutné nahlížet do jejího 
+            zdrojového kódu a snažit se pochopit některé složitější konstrukce.
+        </para>
+    </section>
+    <section>
+        <title>
+        Závěr
+        </title>
+        <para>
+        Tento projekt mi pomohl lépe pochopit formát ODF a naučit se jakým způsobem s ním můžeme pracovat skrze knihovnu Javy jOpenDocument . Další výhodou bylo 
+            seznámení se s prostředím Github, které mi pomůže v budoucí projektech, na kterých budu pracovat.
+        </para>
+    </section>
+</article>
