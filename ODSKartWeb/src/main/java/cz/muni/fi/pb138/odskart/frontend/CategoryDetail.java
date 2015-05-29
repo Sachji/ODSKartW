@@ -11,6 +11,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * A class detailing categories and their functions
+ *
+ * @author Ondřej Skýba
+ */
 @WebServlet(name = "Category", urlPatterns = {CategoryDetail.CAT_DETAIL, CategoryDetail.MEDIUM_ADD, CategoryDetail.MEDIUM_DELETE, CategoryDetail.MEDIUM_MOVE})
 public class CategoryDetail extends BaseServlet {
 

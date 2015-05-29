@@ -8,31 +8,36 @@ import cz.muni.fi.pb138.odskart.backend.KartManager;
 import cz.muni.fi.pb138.odskart.backend.Movie;
 import java.util.ArrayList;
 
+/**
+ * A class for adding a new medium form
+ *
+ * @author Ondřej Skýba
+ */
 public class AddMediumForm {
-    
+
     private Category category;
     private final ArrayList<Movie> movies;
-    
+
     public AddMediumForm() {
         movies = new ArrayList<>();
     }
-    
+
     public static AddMediumForm extractFromRequest(HttpServletRequest request, KartManager manager) throws KartException {
         AddMediumForm form = new AddMediumForm();
         int id = Integer.parseInt(request.getParameter("category_id"));
         Category cat = manager.getCategory(id);
         form.setCategory(cat);
-        
+
         for (int i = 1; i <= cat.getMaxMediumMovies(); i++) {
             String name = request.getParameter("movie" + i);
             if(!name.equals("")){
                 form.addMovie(new Movie(name));
             }
         }
-        
+
         return form;
     }
-    
+
     public Medium validateAndGet(StringBuilder error) {
         try {
             Medium medium = new Medium(getCategory());
@@ -44,19 +49,19 @@ public class AddMediumForm {
             error.append(ex.getMessage());
             return null;
         }
-        
+
     }
-    
+
     public Category getCategory() {
         return category;
     }
-    
+
     public void setCategory(Category category) {
         this.category = category;
     }
-    
+
     public void addMovie(Movie m) {
         this.movies.add(m);
     }
-    
+
 }

@@ -9,6 +9,11 @@ import java.util.logging.Logger;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * A class for managing the web application
+ *
+ * @author Ondřej Skýba
+ */
 public class BaseServlet extends HttpServlet {
 
     protected static final String ODS_PATH = "/kart.ods";

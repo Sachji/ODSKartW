@@ -6,6 +6,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * A class for searching for a movie
+ *
+ * @author Ondřej Skýba
+ */
 @WebServlet(name = "Search", urlPatterns = {Search.SEARCH, Search.SEARCH_RESULTS})
 public class Search extends BaseServlet {
 

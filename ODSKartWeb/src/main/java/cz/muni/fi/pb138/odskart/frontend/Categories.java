@@ -10,6 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * A class for managing categories and their forms
+ *
+ * @author Ondřej Skýba
+ */
 @WebServlet(name = "Categories", urlPatterns = {Categories.CAT_LIST, Categories.CAT_DELETE, Categories.CAT_ADD})
 public class Categories extends BaseServlet {
 

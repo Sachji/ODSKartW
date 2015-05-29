@@ -3,6 +3,11 @@ package cz.muni.fi.pb138.odskart.frontend;
 import cz.muni.fi.pb138.odskart.backend.Category;
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * A class for adding a new category form
+ *
+ * @author Ondřej Skýba
+ */
 public class AddCategoryForm {
 
     private String name;
