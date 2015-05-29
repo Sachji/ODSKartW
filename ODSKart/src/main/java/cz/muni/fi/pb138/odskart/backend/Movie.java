@@ -50,7 +50,7 @@ public final class Movie {
             return false;
         }
         Movie other = (Movie) obj;
-        if (!getName().equals(other.getName())) {
+        if (!getName().toLowerCase().equals(other.getName().toLowerCase())) {
             return false;
         } else {
             return true;
