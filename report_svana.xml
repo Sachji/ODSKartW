@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V5.0//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<article>
+    <articleinfo>
+        <title>
+            ODSKartW - Záverečný report
+        </title>
+        <author>
+            <firstname>
+                Ján
+            </firstname>
+            <surname>
+                Švaňa
+            </surname>
+        </author>
+        <pubdate>
+        29.5.2015
+        </pubdate>
+    </articleinfo>
+    <section>
+        <title>
+        Návrh aplikácie
+        </title>
+        <para>
+         Návrh aplikácie sme vyriešili na druhom stretnutí tímu, je znázornený graficky prostredníctvom use-case a class diagramu. 
+        </para>
+    </section>
+    <section>
+        <title>
+        Tvorba aplikácie
+        </title>
+        <para>
+        Tvorba aplikačnej časti bola na ostatných členoch tímu. Mojou úlohou bolo zdokumentovať aplikáciu na wiki stránkach, jej zdrojový kód, vytvoriť šablónu v Docbooku pre záverečné reporty a vytvoriť testovací .ods zošit pre aplikáciu.
+        </para>
+    </section>
+    <section>
+        <title>
+        Tvorba grafického rozhrania
+        </title>
+        <para>
+        Za túto časť bol zodpovedný hlavne Vojtěch Ondřej a ostatní členovia tímu.
+        </para>
+    </section>
+    <section>
+        <title>
+        Dokumentácia
+        </title>
+        <para>
+        Dokumentácia bola mojou hlavnou úlohou. Na wiki stránkach projektu som popísal základné informácie o projekte a tíme, históriu stretnutí a zadaní a prostredie aplikácie. Jednotlivé .xml súbory som vytvoril v pracovnom prostredí NetBeans a potom konvertoval pomocou xsltproc a Docbook html šablón.
+        </para>
+    </section>
+    <section>
+        <title>
+        Ladenie, testovanie a optimalizácia
+        </title>
+        <para>
+        Menšie úpravy backendu, vytvorenie zošitu v .ods formáte pre účely testovania.
+        </para>
+    </section>
+    <section>
+        <title>
+        Použité technológie
+        </title>
+        <para>
+        tK XSLTPROC, Docbook, Javadoc
+        </para>
+    </section>
+    <section>
+        <title>
+        Komplikácie
+        </title>
+        <para>
+        Hlavný problém bola konverzia súborov typu Docbook na formát HTML, ktorá na platforme Windows vyžaduje využitie viacerých nástrojov.
+        </para>
+    </section>
+    <section>
+        <title>
+        Záver
+        </title>
+        <para>
+        Zoznámil som sa s prácou v Docbooku a prehĺbil znalosti Javadocu.
+        </para>
+    </section>
+</article>
