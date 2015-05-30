@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V5.0//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<book>
+    <info>
+        <title>Documentation of project ODSKartW</title>
+        <subtitle>Nástroj pro správu kartotéky videoobsahu v souboru ve formátu ODF</subtitle>
+        <publisher>
+            <publishername>Ján Švaňa</publishername>
+        </publisher>
+        <edition>1.0</edition>
+    </info>
+    <part>
+        <title>Project summary</title>
+        <subtitle>Details of project ODSKartW</subtitle>
+        <chapter>
+            <title>Introduction</title>
+            <sect1>
+                <title>Project Task</title>
+                <para>Students will design and implement a web application in the Java EE environment, which will allow the management of media with video content. A sheet in ODF format will be used as the source and will be provided by the project supervisor.</para>
+                <para>- adding a medium to a category
+                </para>
+                <para>- adding a new category
+                </para>
+                <para>- searching for a movie
+                </para>
+                <para>- removing a medium from a category
+                </para>
+                <para>- removing a category
+                </para>
+                <para>- changing the category of a medium
+                </para>
+                <para> Applications will be implemented as a web application with the use of JSP /
+                    Servlet container Jetty. </para>
+            </sect1>
+            <sect1>
+                <title>Subject</title>
+                <para>PB138 - Moderní značkovací jazyky a jejich aplikace</para>
+            </sect1>
+            <sect1>
+                <title>Authors</title>
+                <para>- Ondřej Skýba
+                </para>
+                <para>- Jiří Šácha
+                </para>
+                <para>- Vojtěch Ondřej
+                </para>
+                <para>- Ján Švaňa
+                </para>
+            </sect1>
+            <sect1>
+                <title>Supervisors</title>
+                <para>- Luděk Bártek</para>
+                <para>- Tomáš Pitner</para>
+            </sect1>
+            <sect1>
+                <title>Used project environments</title>
+                <para>- NetBeans</para>
+                <para>- Visual Paradigm</para>
+            </sect1>
+            <sect1>
+                <title>Libraries</title>
+                <para>- jUnit 4.10</para>
+                <para>- jOpenDocument 1.3</para>
+                <para>- JSTL 1.2</para>
+                <para>- Tiles 3.0.5</para>
+            </sect1>
+        </chapter>
+    </part>
+    <part>
+        <title>Concept</title>
+        <subtitle>Basic concept of project ODSKartW</subtitle>
+        <chapter>
+            <title>Diagrams</title>
+            <para>Describes the basic concept of the project in the form of a use-case and class diagram </para>
+            <sect1>
+                <title>Use-case</title>
+                <figure>
+                    <title>ODSKartW Use-case Diagram</title>
+                    <mediaobject>
+                        <imageobject>
+                            <imagedata
+                                fileref="http://i61.tinypic.com/552cs0.png"
+                            />
+                        </imageobject>
+                    </mediaobject>
+                </figure>
+                <para>A use-case diagram in .png format representing the basic functionality concept</para>
+            </sect1>
+            <sect1>
+                <title>Class Diagram</title>
+                <figure>
+                    <title>ODSKartW Class Diagram</title>
+                    <mediaobject>
+                        <imageobject>
+                            <imagedata
+                                fileref="http://i59.tinypic.com/2ijgkeo.png"/>
+                        </imageobject>
+                    </mediaobject>
+                </figure>
+                <para>A class diagram in .png format representing the classes, attributes and functions of the application</para>
+            </sect1>
+        </chapter>
+    </part>
+    <part>
+        <title>Application interface</title>
+        <subtitle>Interface and functionality description of project ODSKartW</subtitle>
+        <chapter>
+            <title>Functionality</title>
+            <sect1>
+                <title>Main window</title>
+                <para>The main window of the application interface offering the exploration of the attached ODF file or the search of a specific movie.</para>
+                <figure>
+                    <title>Main window</title>
+                    <mediaobject>
+                        <imageobject>
+                            <imagedata fileref="http://i62.tinypic.com/29ok042.png"/>
+                        </imageobject>
+                    </mediaobject>
+                    <para>Buttons:
+                    </para>
+                    <para>Explore - explores the attached ODF file
+                    </para>
+                    <para>Search for movie - initiates a search query for a specific movie
+                    </para>
+                </figure>
+            </sect1>
+            <sect1>
+                <title>Search</title>
+                <para>Allows searching for a specific movie by typing its name into a text box.</para>
+                <figure>
+                    <title>Search window</title>
+                    <mediaobject>
+                        <imageobject>
+                            <imagedata fileref="http://i57.tinypic.com/10i6uqb.png"/>
+                        </imageobject>
+                    </mediaobject>
+                    <para>Buttons:
+                    </para>
+                    <para>Submit - confirms the specified search query
+                    </para>
+                </figure>
+            </sect1>
+            <sect1>
+                <title>Search results</title>
+                <para>A window that lists the results of the specified search query.</para>
+                <figure>
+                    <title>Search results window</title>
+                    <mediaobject>
+                        <imageobject>
+                            <imagedata fileref="http://i57.tinypic.com/znr7tz.png"/>
+                        </imageobject>
+                    </mediaobject>
+                    <para>Buttons:
+                    </para>
+                    <para>Move - moves the specified medium to another category
+                    </para>
+                    <para>Delete - deletes the specified medium
+                    </para>
+                </figure>
+            </sect1>
+            <sect1>
+                <title>Categories list</title>
+                <para>The part of the interface that is used to manage categories. Lists all the categories with their ID number, name and the maximum number of media in them.</para>
+                <figure>
+                    <title>Categories</title>
+                    <mediaobject>
+                        <imageobject>
+                            <imagedata fileref="http://i57.tinypic.com/23nu2w.png"/>
+                        </imageobject>
+                    </mediaobject>
+                    <para>Buttons:
+                    </para>
+                    <para>Add Category - adds a new category
+                    </para>
+                    <para>Delete - deletes the specified category
+                    </para>
+                </figure>
+            </sect1>
+            <sect1>
+                <title>Media list</title>
+                <para>The part of the interface that is used to manage media. Lists all the media of a category with their ID and content.</para>
+                <figure>
+                    <title>Media</title>
+                    <mediaobject>
+                        <imageobject>
+                            <imagedata fileref="http://i58.tinypic.com/10zwold.png"/>
+                        </imageobject>
+                    </mediaobject>
+                    <para>Buttons:
+                    </para>
+                    <para>Add Medium - redirects to a window that allows the addition of a new medium to the category
+                    </para>
+                    <para>Move - moves the specified medium to another category  
+                    </para>
+                    <para>Delete - deletes the specified medium 
+                    </para>
+                </figure>
+            </sect1>
+            <sect1>
+                <title>Adding a medium</title>
+                <para>Manages the addition of media to a category. The names of the media to be added are specified here.</para>
+                <figure>
+                    <title>Add medium</title>
+                    <mediaobject>
+                        <imageobject>
+                            <imagedata fileref="http://i58.tinypic.com/j6ssv6.jpg"/>
+                        </imageobject>
+                    </mediaobject>
+                    <para>Buttons:
+                    </para>
+                    <para>Submit - confirms the addition of a new medium to the category
+                    </para>
+                </figure>
+            </sect1>
+        </chapter>
+    </part>
+</book>

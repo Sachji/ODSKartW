@@ -1,0 +1,357 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Documentation of project ODSKartW</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="book">
+<div class="titlepage">
+<div>
+<div><h1 class="title">
+<a name="id3700611"></a>Documentation of project ODSKartW</h1></div>
+<div><h2 class="subtitle">N&aacute;stroj pro spr&aacute;vu kartot&eacute;ky videoobsahu v souboru ve form&aacute;tu ODF</h2></div>
+</div>
+<hr>
+</div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="part"><a href="#id3700610">I. Project summary</a></span></dt>
+<dd><dl>
+<dt><span class="chapter"><a href="#id3700624">1. Introduction</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="#id3700648">Project Task</a></span></dt>
+<dt><span class="sect1"><a href="#id3700666">Subject</a></span></dt>
+<dt><span class="sect1"><a href="#id3701998">Authors</a></span></dt>
+<dt><span class="sect1"><a href="#id3702033">Supervisors</a></span></dt>
+<dt><span class="sect1"><a href="#id3702042">Used project environments</a></span></dt>
+<dt><span class="sect1"><a href="#id3702079">Libraries</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="part"><a href="#id3702097">II. Concept</a></span></dt>
+<dd><dl>
+<dt><span class="chapter"><a href="#id3702124">2. Diagrams</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="#id3702133">Use-case</a></span></dt>
+<dt><span class="sect1"><a href="#id3734526">Class Diagram</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="part"><a href="#id3734610">III. Application interface</a></span></dt>
+<dd><dl>
+<dt><span class="chapter"><a href="#id3734622">3. Functionality</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="#id3734644">Main window</a></span></dt>
+<dt><span class="sect1"><a href="#id3734734">Search</a></span></dt>
+<dt><span class="sect1"><a href="#id3733933">Search results</a></span></dt>
+<dt><span class="sect1"><a href="#id3733981">Categories list</a></span></dt>
+<dt><span class="sect1"><a href="#id3734225">Media list</a></span></dt>
+<dt><span class="sect1"><a href="#id3734456">Adding a medium</a></span></dt>
+</dl></dd>
+</dl></dd>
+</dl>
+</div>
+<div class="list-of-figures">
+<p><b>List of Figures</b></p>
+<dl>
+<dt>2.1. <a href="#id3702111">ODSKartW Use-case Diagram</a>
+</dt>
+<dt>2.2. <a href="#id3734537">ODSKartW Class Diagram</a>
+</dt>
+<dt>3.1. <a href="#id3734623">Main window</a>
+</dt>
+<dt>3.2. <a href="#id3733924">Search window</a>
+</dt>
+<dt>3.3. <a href="#id3733945">Search results window</a>
+</dt>
+<dt>3.4. <a href="#id3734032">Categories</a>
+</dt>
+<dt>3.5. <a href="#id3734237">Media</a>
+</dt>
+<dt>3.6. <a href="#id3734444">Add medium</a>
+</dt>
+</dl>
+</div>
+<div class="part">
+<div class="titlepage"><div>
+<div><h1 class="title">
+<a name="id3700610"></a>Part&nbsp;I.&nbsp;Project summary</h1></div>
+<div><h2 class="subtitle">Details of project ODSKartW</h2></div>
+</div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="chapter"><a href="#id3700624">1. Introduction</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="#id3700648">Project Task</a></span></dt>
+<dt><span class="sect1"><a href="#id3700666">Subject</a></span></dt>
+<dt><span class="sect1"><a href="#id3701998">Authors</a></span></dt>
+<dt><span class="sect1"><a href="#id3702033">Supervisors</a></span></dt>
+<dt><span class="sect1"><a href="#id3702042">Used project environments</a></span></dt>
+<dt><span class="sect1"><a href="#id3702079">Libraries</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="id3700624"></a>Chapter&nbsp;1.&nbsp;Introduction</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="#id3700648">Project Task</a></span></dt>
+<dt><span class="sect1"><a href="#id3700666">Subject</a></span></dt>
+<dt><span class="sect1"><a href="#id3701998">Authors</a></span></dt>
+<dt><span class="sect1"><a href="#id3702033">Supervisors</a></span></dt>
+<dt><span class="sect1"><a href="#id3702042">Used project environments</a></span></dt>
+<dt><span class="sect1"><a href="#id3702079">Libraries</a></span></dt>
+</dl>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3700648"></a>Project Task</h2></div></div></div>
+<p>Students will design and implement a web application in the Java EE environment, which will allow the management of media with video content. A sheet in ODF format will be used as the source and will be provided by the project supervisor.</p>
+<p>- adding a medium to a category
+                </p>
+<p>- adding a new category
+                </p>
+<p>- searching for a movie
+                </p>
+<p>- removing a medium from a category
+                </p>
+<p>- removing a category
+                </p>
+<p>- changing the category of a medium
+                </p>
+<p> Applications will be implemented as a web application with the use of JSP /
+                    Servlet container Jetty. </p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3700666"></a>Subject</h2></div></div></div>
+<p>PB138 - Modern&iacute; zna&#269;kovac&iacute; jazyky a jejich aplikace</p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3701998"></a>Authors</h2></div></div></div>
+<p>- Ond&#345;ej Sk&yacute;ba
+                </p>
+<p>- Ji&#345;&iacute; &Scaron;&aacute;cha
+                </p>
+<p>- Vojt&#283;ch Ond&#345;ej
+                </p>
+<p>- J&aacute;n &Scaron;va&#328;a
+                </p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3702033"></a>Supervisors</h2></div></div></div>
+<p>- Lud&#283;k B&aacute;rtek</p>
+<p>- Tom&aacute;&scaron; Pitner</p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3702042"></a>Used project environments</h2></div></div></div>
+<p>- NetBeans</p>
+<p>- Visual Paradigm</p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3702079"></a>Libraries</h2></div></div></div>
+<p>- jUnit 4.10</p>
+<p>- jOpenDocument 1.3</p>
+<p>- JSTL 1.2</p>
+<p>- Tiles 3.0.5</p>
+</div>
+</div>
+</div>
+<div class="part">
+<div class="titlepage"><div>
+<div><h1 class="title">
+<a name="id3702097"></a>Part&nbsp;II.&nbsp;Concept</h1></div>
+<div><h2 class="subtitle">Basic concept of project ODSKartW</h2></div>
+</div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="chapter"><a href="#id3702124">2. Diagrams</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="#id3702133">Use-case</a></span></dt>
+<dt><span class="sect1"><a href="#id3734526">Class Diagram</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="id3702124"></a>Chapter&nbsp;2.&nbsp;Diagrams</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="#id3702133">Use-case</a></span></dt>
+<dt><span class="sect1"><a href="#id3734526">Class Diagram</a></span></dt>
+</dl>
+</div>
+<p>Describes the basic concept of the project in the form of a use-case and class diagram </p>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3702133"></a>Use-case</h2></div></div></div>
+<div class="figure">
+<a name="id3702111"></a><p class="title"><b>Figure&nbsp;2.1.&nbsp;ODSKartW Use-case Diagram</b></p>
+<div class="figure-contents"><div class="mediaobject"><img src="http://i61.tinypic.com/552cs0.png" alt="ODSKartW Use-case Diagram"></div></div>
+</div>
+<br class="figure-break"><p>A use-case diagram in .png format representing the basic functionality concept</p>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3734526"></a>Class Diagram</h2></div></div></div>
+<div class="figure">
+<a name="id3734537"></a><p class="title"><b>Figure&nbsp;2.2.&nbsp;ODSKartW Class Diagram</b></p>
+<div class="figure-contents"><div class="mediaobject"><img src="http://i59.tinypic.com/2ijgkeo.png" alt="ODSKartW Class Diagram"></div></div>
+</div>
+<br class="figure-break"><p>A class diagram in .png format representing the classes, attributes and functions of the application</p>
+</div>
+</div>
+</div>
+<div class="part">
+<div class="titlepage"><div>
+<div><h1 class="title">
+<a name="id3734610"></a>Part&nbsp;III.&nbsp;Application interface</h1></div>
+<div><h2 class="subtitle">Interface and functionality description of project ODSKartW</h2></div>
+</div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="chapter"><a href="#id3734622">3. Functionality</a></span></dt>
+<dd><dl>
+<dt><span class="sect1"><a href="#id3734644">Main window</a></span></dt>
+<dt><span class="sect1"><a href="#id3734734">Search</a></span></dt>
+<dt><span class="sect1"><a href="#id3733933">Search results</a></span></dt>
+<dt><span class="sect1"><a href="#id3733981">Categories list</a></span></dt>
+<dt><span class="sect1"><a href="#id3734225">Media list</a></span></dt>
+<dt><span class="sect1"><a href="#id3734456">Adding a medium</a></span></dt>
+</dl></dd>
+</dl>
+</div>
+<div class="chapter">
+<div class="titlepage"><div><div><h2 class="title">
+<a name="id3734622"></a>Chapter&nbsp;3.&nbsp;Functionality</h2></div></div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="sect1"><a href="#id3734644">Main window</a></span></dt>
+<dt><span class="sect1"><a href="#id3734734">Search</a></span></dt>
+<dt><span class="sect1"><a href="#id3733933">Search results</a></span></dt>
+<dt><span class="sect1"><a href="#id3733981">Categories list</a></span></dt>
+<dt><span class="sect1"><a href="#id3734225">Media list</a></span></dt>
+<dt><span class="sect1"><a href="#id3734456">Adding a medium</a></span></dt>
+</dl>
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3734644"></a>Main window</h2></div></div></div>
+<p>The main window of the application interface offering the exploration of the attached ODF file or the search of a specific movie.</p>
+<div class="figure">
+<a name="id3734623"></a><p class="title"><b>Figure&nbsp;3.1.&nbsp;Main window</b></p>
+<div class="figure-contents">
+<div class="mediaobject"><img src="http://i62.tinypic.com/29ok042.png" alt="Main window"></div>
+<p>Buttons:
+                    </p>
+<p>Explore - explores the attached ODF file
+                    </p>
+<p>Search for movie - initiates a search query for a specific movie
+                    </p>
+</div>
+</div>
+<br class="figure-break">
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3734734"></a>Search</h2></div></div></div>
+<p>Allows searching for a specific movie by typing its name into a text box.</p>
+<div class="figure">
+<a name="id3733924"></a><p class="title"><b>Figure&nbsp;3.2.&nbsp;Search window</b></p>
+<div class="figure-contents">
+<div class="mediaobject"><img src="http://i57.tinypic.com/10i6uqb.png" alt="Search window"></div>
+<p>Buttons:
+                    </p>
+<p>Submit - confirms the specified search query
+                    </p>
+</div>
+</div>
+<br class="figure-break">
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3733933"></a>Search results</h2></div></div></div>
+<p>A window that lists the results of the specified search query.</p>
+<div class="figure">
+<a name="id3733945"></a><p class="title"><b>Figure&nbsp;3.3.&nbsp;Search results window</b></p>
+<div class="figure-contents">
+<div class="mediaobject"><img src="http://i57.tinypic.com/znr7tz.png" alt="Search results window"></div>
+<p>Buttons:
+                    </p>
+<p>Move - moves the specified medium to another category
+                    </p>
+<p>Delete - deletes the specified medium
+                    </p>
+</div>
+</div>
+<br class="figure-break">
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3733981"></a>Categories list</h2></div></div></div>
+<p>The part of the interface that is used to manage categories. Lists all the categories with their ID number, name and the maximum number of media in them.</p>
+<div class="figure">
+<a name="id3734032"></a><p class="title"><b>Figure&nbsp;3.4.&nbsp;Categories</b></p>
+<div class="figure-contents">
+<div class="mediaobject"><img src="http://i57.tinypic.com/23nu2w.png" alt="Categories"></div>
+<p>Buttons:
+                    </p>
+<p>Add Category - adds a new category
+                    </p>
+<p>Delete - deletes the specified category
+                    </p>
+</div>
+</div>
+<br class="figure-break">
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3734225"></a>Media list</h2></div></div></div>
+<p>The part of the interface that is used to manage media. Lists all the media of a category with their ID and content.</p>
+<div class="figure">
+<a name="id3734237"></a><p class="title"><b>Figure&nbsp;3.5.&nbsp;Media</b></p>
+<div class="figure-contents">
+<div class="mediaobject"><img src="http://i58.tinypic.com/10zwold.png" alt="Media"></div>
+<p>Buttons:
+                    </p>
+<p>Add Medium - redirects to a window that allows the addition of a new medium to the category
+                    </p>
+<p>Move - moves the specified medium to another category  
+                    </p>
+<p>Delete - deletes the specified medium 
+                    </p>
+</div>
+</div>
+<br class="figure-break">
+</div>
+<div class="sect1">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="id3734456"></a>Adding a medium</h2></div></div></div>
+<p>Manages the addition of media to a category. The names of the media to be added are specified here.</p>
+<div class="figure">
+<a name="id3734444"></a><p class="title"><b>Figure&nbsp;3.6.&nbsp;Add medium</b></p>
+<div class="figure-contents">
+<div class="mediaobject"><img src="http://i58.tinypic.com/j6ssv6.jpg" alt="Add medium"></div>
+<p>Buttons:
+                    </p>
+<p>Submit - confirms the addition of a new medium to the category
+                    </p>
+</div>
+</div>
+<br class="figure-break">
+</div>
+</div>
+</div>
+</div></body>
+</html>
+
