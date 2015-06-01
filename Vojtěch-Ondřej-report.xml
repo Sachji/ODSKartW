@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V5.0//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<article>
+    <articleinfo>
+        <title>
+            ODSKartW - Závěrečný report
+        </title>
+        <author>
+            <firstname>
+                Vojtěch
+            </firstname>
+            <surname>
+                Ondřej
+            </surname>
+        </author>
+        <pubdate>
+        1.6.2015
+        </pubdate>
+    </articleinfo>
+    <section>
+        <title>
+        Návrh aplikace
+        </title>
+        <para>
+         Návrh aplikace byl v prvních fázích konzultován celým týmem. Bylo rozhodnuto, že aplikace bude využívat knihovnu jOpenDocument, která umožňuje 
+            manipulaci se soubory formátu OpenDocument (ODF). V další fázi byl mnou vytvořen Class diagram, podle kterého byla vytvořena kostra backendu aplikace.
+            Dále jsem vytvořil UseCase diagram pro objasnění funkcí aplikace.
+        </para>
+    </section>
+    <section>
+        <title>
+        Tvorba aplikace
+        </title>
+        <para>
+            Mou hlavní úlohou byla tvorba JUnit testů. 
+        </para>
+    </section>
+    <section>
+        <title>
+        Tvorba grafického rozhraní
+        </title>
+        <para>
+        Tvorba grafického rozhraní byla úlohou mou společně s Ondřejem Skýbou.
+        </para>
+    </section>
+    <section>
+        <title>
+        Dokumentace
+        </title>
+        <para>
+        Na dokumentaci jsem se vůbec nepodílel.
+        </para>
+    </section>
+    <section>
+        <title>
+        Ladění, testování a optimalizace
+        </title>
+        <para>
+        Ladění chyb nalezených v kódu díky testům a dodělávání chybějících vstupních podmínek.
+        </para>
+    </section>
+    <section>
+        <title>
+        Použité technologie
+        </title>
+        <para>
+        jOpenDocument, IDE NetBeans, GitHub, Java 8, JUnit, Visual Paradigm.
+        </para>
+    </section>
+    <section>
+        <title>
+        Závěr
+        </title>
+        <para>
+        Tento projekt mi pomohl lépe pochopit JUnit testování a práci s ním. 
+        </para>
+    </section>
+</article>

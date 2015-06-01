@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V5.0//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<article>
+    <articleinfo>
+        <title>
+            ODSKartW - Závěrečný report
+        </title>
+        <author>
+            <firstname>
+                Ondřej
+            </firstname>
+            <surname>
+                Skýba
+            </surname>
+        </author>
+        <pubdate>
+        1.6.2015
+        </pubdate>
+    </articleinfo>
+    <section>
+        <title>
+        Role v týmu
+        </title>
+        <para>
+        V týmu jsem učinkoval jako leader. Mou prací bylo kontrolovat výsledky ostatních členů, dohlížet na termíny, přidělovat úkoly. Zároveň jsem měl na starost programování frontendové části aplikace.
+        </para>
+    </section>
+    <section>
+        <title>
+        Rozdělení rolí
+        </title>
+        <para>
+        Každý člen týmu měl odlišnou roli, role jsem sestavil tak, aby co nejlépe odpovídaly schopnostem členů. Jiří Šácha měl na starosti především programování backendové části aplikace, Vojtěch Ondřej návrh aplikace a její testování a nakonec Ján Švaňa měl na starosti dokumentaci, wiki a obecně veřejnou prezentaci týmu.
+        </para>
+    </section>
+    <section>
+        <title>
+        Tvorba aplikace
+        </title>
+        <para>
+        Tvorbu aplikace jsme rozdělili do dvou projektů - backend a frontend. Já se ujmul frontendové části, protože s ní měl největší zkušenosti.
+        </para>
+    </section>
+    <section>
+        <title>
+        Využívání týmových prostředků
+        </title>
+        <para>
+        Pro vývoj jsme využívali prostředí GitHub, pro prezentaci projektu GitHub Wiki. Dále jsme částečně využívali funkce GitHubu Issues, nicméně většina naší komunikace probíhala osobně nebo přes sociální sítě a proto Issues nebyly tolik využívány.
+        </para>
+    </section>
+    <section>
+        <title>
+        Závěr
+        </title>
+        <para>
+        Projekt pro mě byl především přínosem v oblasti vedení týmu a organizace a dále jsem si i rozšířil znalosti Java EE.
+        Aplikační část jsme dokončili s velkým předstihem a poté již jen ladily chyby a dokončovali detaily.
+        </para>
+    </section>
+</article>
